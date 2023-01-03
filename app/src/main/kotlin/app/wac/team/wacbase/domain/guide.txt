@@ -1,0 +1,2 @@
+- Put Repository/ UseCase interface here.
+- Add entity, obj class here too.
