@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             else -> {
-                binding.activityMainSwitchThemeFab.setImageResource(R.color.colorAccent)
+                binding.activityMainSwitchThemeFab.setImageResource(R.color.purple_500)
                 binding.activityMainSwitchThemeFab.setOnReactiveClickListener {
                     setNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 }
