@@ -1,7 +1,5 @@
 package app.wac.team.buildsrc
 
-import app.wac.team.buildsrc.Depends.Versions.appVersionCode
-
 object Depends {
 
     object Versions {
@@ -62,72 +60,73 @@ object Depends {
     }
 
     object ClassPaths {
-        const val gradle = "com.android.tools.build:gradle:${app.wac.team.buildsrc.Depends.Versions.gradleVersion}"
+        const val gradle = "com.android.tools.build:gradle:${Versions.gradleVersion}"
         const val kotlin_gradle_plugin = "gradle-plugin"
-        const val navigation_safe_args_gradle_plugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${app.wac.team.buildsrc.Depends.Versions.navigationVersion}"
+        const val navigation_safe_args_gradle_plugin =
+            "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationVersion}"
 
-        const val hilt_android_gradle_plugin = "com.google.dagger:hilt-android-gradle-plugin:${app.wac.team.buildsrc.Depends.Versions.hiltVersion}"
-        const val sonarqube_gradle_plugin = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${app.wac.team.buildsrc.Depends.Versions.sonarqubeVersion}"
-        const val detekt_gradle_plugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${app.wac.team.buildsrc.Depends.Versions.detektVersion}"
+        const val hilt_android_gradle_plugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltVersion}"
+        const val sonarqube_gradle_plugin = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${Versions.sonarqubeVersion}"
+        const val detekt_gradle_plugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detektVersion}"
     }
 
     object Libraries {
-        const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${app.wac.team.buildsrc.Depends.Versions.kotlinVersion}"
-        const val kotlin_reflect = "org.jetbrains.kotlin:kotlin-reflect:${app.wac.team.buildsrc.Depends.Versions.kotlinVersion}"
-        const val multidex = "androidx.multidex:multidex:${app.wac.team.buildsrc.Depends.Versions.multidexVersion}"
-        const val hilt_android = "com.google.dagger:hilt-android:${app.wac.team.buildsrc.Depends.Versions.hiltVersion}"
-        const val hilt_android_compiler = "com.google.dagger:hilt-android-compiler:${app.wac.team.buildsrc.Depends.Versions.hiltVersion}"
-        const val hilt_compiler = "androidx.hilt:hilt-compiler:${app.wac.team.buildsrc.Depends.Versions.hiltCompilerVersion}"
-        const val fragment_ktx = "androidx.fragment:fragment-ktx:${app.wac.team.buildsrc.Depends.Versions.fragmentExtVersion}"
-        const val android_core_ktx = "androidx.core:core-ktx:${app.wac.team.buildsrc.Depends.Versions.coreKtxVersion}"
-        const val paging_runtime_ktx = "androidx.paging:paging-runtime-ktx:${app.wac.team.buildsrc.Depends.Versions.pagingVersion}"
-        const val paging_rx = "androidx.paging:paging-rxjava3:${app.wac.team.buildsrc.Depends.Versions.pagingVersion}"
-        const val java_inject = "javax.inject:javax.inject:${app.wac.team.buildsrc.Depends.Versions.javaxInjectVersion}"
-        const val retrofit = "com.squareup.retrofit2:retrofit:${app.wac.team.buildsrc.Depends.Versions.retrofit2Version}"
-        const val retrofit_adapter_rx = "com.squareup.retrofit2:adapter-rxjava3:${app.wac.team.buildsrc.Depends.Versions.retrofit2Version}"
-        const val logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${app.wac.team.buildsrc.Depends.Versions.okhttpLoggingVersion}"
-        const val timber = "com.jakewharton.timber:timber:${app.wac.team.buildsrc.Depends.Versions.timberVersion}"
-        const val material = "com.google.android.material:material:${app.wac.team.buildsrc.Depends.Versions.materialVersion}"
+        const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlinVersion}"
+        const val kotlin_reflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlinVersion}"
+        const val multidex = "androidx.multidex:multidex:${Versions.multidexVersion}"
+        const val hilt_android = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
+        const val hilt_android_compiler = "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"
+        const val hilt_compiler = "androidx.hilt:hilt-compiler:${Versions.hiltCompilerVersion}"
+        const val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragmentExtVersion}"
+        const val android_core_ktx = "androidx.core:core-ktx:${Versions.coreKtxVersion}"
+        const val paging_runtime_ktx = "androidx.paging:paging-runtime-ktx:${Versions.pagingVersion}"
+        const val paging_rx = "androidx.paging:paging-rxjava3:${Versions.pagingVersion}"
+        const val java_inject = "javax.inject:javax.inject:${Versions.javaxInjectVersion}"
+        const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit2Version}"
+        const val retrofit_adapter_rx = "com.squareup.retrofit2:adapter-rxjava3:${Versions.retrofit2Version}"
+        const val logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpLoggingVersion}"
+        const val timber = "com.jakewharton.timber:timber:${Versions.timberVersion}"
+        const val material = "com.google.android.material:material:${Versions.materialVersion}"
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        const val junit = "junit:junit:${app.wac.team.buildsrc.Depends.Versions.junitVersion}"
-        const val test_runner = "androidx.test:runner:${app.wac.team.buildsrc.Depends.Versions.supportTestVersion}"
-        const val test_rules = "androidx.test:rules:${app.wac.team.buildsrc.Depends.Versions.supportTestVersion}"
-        const val test_core = "androidx.test:core:${app.wac.team.buildsrc.Depends.Versions.testCoreVersion}"
-        const val test_ext_junit = "androidx.test.ext:junit:${app.wac.team.buildsrc.Depends.Versions.testExtJunitVersion}"
-        const val espresso_core = "androidx.test.espresso:espresso-core:${app.wac.team.buildsrc.Depends.Versions.espressoVersion}"
-        const val gson = "com.google.code.gson:gson:${app.wac.team.buildsrc.Depends.Versions.gsonVersion}"
-        const val converter_gson = "com.squareup.retrofit2:converter-gson:${app.wac.team.buildsrc.Depends.Versions.retrofitConverterGson}"
-        const val appcompat = "androidx.appcompat:appcompat:${app.wac.team.buildsrc.Depends.Versions.supportVersion}"
-        const val mockito_core = "org.mockito:mockito-core:${app.wac.team.buildsrc.Depends.Versions.mockitoCoreVersion}"
-        const val mockito_inline = "org.mockito:mockito-inline:${app.wac.team.buildsrc.Depends.Versions.mockitoInlineVersion}"
-        const val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${app.wac.team.buildsrc.Depends.Versions.mockitoKotlinVersion}"
-        const val coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${app.wac.team.buildsrc.Depends.Versions.coroutinesTestVersion}"
-        const val mockk = "io.mockk:mockk:${app.wac.team.buildsrc.Depends.Versions.mockkVersion}"
-        const val arch_core_testing = "androidx.arch.core:core-testing:${app.wac.team.buildsrc.Depends.Versions.archCoreTestingVersion}"
-        const val rx_kotlin = "io.reactivex.rxjava3:rxkotlin:${app.wac.team.buildsrc.Depends.Versions.rxKotlinVersion}"
-        const val rx_java = "io.reactivex.rxjava3:rxjava:${app.wac.team.buildsrc.Depends.Versions.rxJavaVersion}"
-        const val lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata:${app.wac.team.buildsrc.Depends.Versions.lifecycleVersion}"
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:${app.wac.team.buildsrc.Depends.Versions.constraintLayoutVersion}"
-        const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:${app.wac.team.buildsrc.Depends.Versions.navigationVersion}"
-        const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:${app.wac.team.buildsrc.Depends.Versions.navigationVersion}"
-        const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${app.wac.team.buildsrc.Depends.Versions.lifecycleVersion}"
-        const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${app.wac.team.buildsrc.Depends.Versions.lifecycleVersion}"
-        const val lifecycle_common = "androidx.lifecycle:lifecycle-common:${app.wac.team.buildsrc.Depends.Versions.lifecycleVersion}"
-        const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${app.wac.team.buildsrc.Depends.Versions.lifecycleVersion}"
-        const val recyclerview = "androidx.recyclerview:recyclerview:${app.wac.team.buildsrc.Depends.Versions.recyclerviewVersion}"
-        const val rx_java_android = "io.reactivex.rxjava3:rxandroid:${app.wac.team.buildsrc.Depends.Versions.rxAndroidVersion}"
-        const val rx_binding3 = "com.jakewharton.rxbinding4:rxbinding:${app.wac.team.buildsrc.Depends.Versions.rxBinding}"
-        const val glide = "com.github.bumptech.glide:glide:${app.wac.team.buildsrc.Depends.Versions.glideVersion}"
-        const val glide_compiler = "com.github.bumptech.glide:compiler:${app.wac.team.buildsrc.Depends.Versions.glideVersion}"
-        const val lottie = "com.airbnb.android:lottie:${app.wac.team.buildsrc.Depends.Versions.lottieVersion}"
-        const val autodispose = "com.uber.autodispose2:autodispose:${app.wac.team.buildsrc.Depends.Versions.autoDispose}"
-        const val autodispose_android = "com.uber.autodispose2:autodispose-android:${app.wac.team.buildsrc.Depends.Versions.autoDispose}"
-        const val autodispose_android_arch = "com.uber.autodispose2:autodispose-androidx-lifecycle:${app.wac.team.buildsrc.Depends.Versions.autoDispose}"
-        const val leak_canary = "com.squareup.leakcanary:leakcanary-android:${app.wac.team.buildsrc.Depends.Versions.leakCanaryVersion}"
-        const val chucker = "com.github.chuckerteam.chucker:library:${app.wac.team.buildsrc.Depends.Versions.chuckerVersion}"
-        const val chucker_no_op = "com.github.chuckerteam.chucker:library-no-op:${app.wac.team.buildsrc.Depends.Versions.chuckerVersion}"
-        const val dataStore_preferences = "androidx.datastore:datastore-preferences:${app.wac.team.buildsrc.Depends.Versions.dataStorePreferenceVersion}"
-        const val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${app.wac.team.buildsrc.Depends.Versions.coroutinesAndroidVersion}"
+        const val junit = "junit:junit:${Versions.junitVersion}"
+        const val test_runner = "androidx.test:runner:${Versions.supportTestVersion}"
+        const val test_rules = "androidx.test:rules:${Versions.supportTestVersion}"
+        const val test_core = "androidx.test:core:${Versions.testCoreVersion}"
+        const val test_ext_junit = "androidx.test.ext:junit:${Versions.testExtJunitVersion}"
+        const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espressoVersion}"
+        const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
+        const val converter_gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofitConverterGson}"
+        const val appcompat = "androidx.appcompat:appcompat:${Versions.supportVersion}"
+        const val mockito_core = "org.mockito:mockito-core:${Versions.mockitoCoreVersion}"
+        const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockitoInlineVersion}"
+        const val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlinVersion}"
+        const val coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTestVersion}"
+        const val mockk = "io.mockk:mockk:${Versions.mockkVersion}"
+        const val arch_core_testing = "androidx.arch.core:core-testing:${Versions.archCoreTestingVersion}"
+        const val rx_kotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.rxKotlinVersion}"
+        const val rx_java = "io.reactivex.rxjava3:rxjava:${Versions.rxJavaVersion}"
+        const val lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata:${Versions.lifecycleVersion}"
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
+        const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
+        const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:${Versions.navigationVersion}"
+        const val lifecycle_livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
+        const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
+        const val lifecycle_common = "androidx.lifecycle:lifecycle-common:${Versions.lifecycleVersion}"
+        const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
+        const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerviewVersion}"
+        const val rx_java_android = "io.reactivex.rxjava3:rxandroid:${Versions.rxAndroidVersion}"
+        const val rx_binding3 = "com.jakewharton.rxbinding4:rxbinding:${Versions.rxBinding}"
+        const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
+        const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glideVersion}"
+        const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
+        const val autodispose = "com.uber.autodispose2:autodispose:${Versions.autoDispose}"
+        const val autodispose_android = "com.uber.autodispose2:autodispose-android:${Versions.autoDispose}"
+        const val autodispose_android_arch = "com.uber.autodispose2:autodispose-androidx-lifecycle:${Versions.autoDispose}"
+        const val leak_canary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanaryVersion}"
+        const val chucker = "com.github.chuckerteam.chucker:library:${Versions.chuckerVersion}"
+        const val chucker_no_op = "com.github.chuckerteam.chucker:library-no-op:${Versions.chuckerVersion}"
+        const val dataStore_preferences = "androidx.datastore:datastore-preferences:${Versions.dataStorePreferenceVersion}"
+        const val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesAndroidVersion}"
     }
 
     object Environments {
@@ -136,9 +135,9 @@ object Depends {
     }
 
     fun generateVersionName(): String {
-        val patch: Int = appVersionCode.rem(1000)
-        val minor: Int = (appVersionCode / 1000).rem(1000)
-        val major: Int = (appVersionCode / 1000000).rem(1000)
+        val patch: Int = Versions.appVersionCode.rem(1000)
+        val minor: Int = (Versions.appVersionCode / 1000).rem(1000)
+        val major: Int = (Versions.appVersionCode / 1000000).rem(1000)
 
         return "$major.$minor.$patch"
     }

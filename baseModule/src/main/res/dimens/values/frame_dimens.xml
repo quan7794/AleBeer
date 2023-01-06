@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--frame_main_fragment-->
+    <dimen name="frame_main_fragment_marginBottom">@dimen/dimen_46dp_h</dimen>
+
+    <!--frame_childrecycler_item-->
+    <dimen name="frame_child_fragment_frametv_artview_title_textsize">@dimen/dimen_11sp</dimen>
+    <dimen name="frame_child_fragment_promo_title_view_textsize">@dimen/dimen_24sp</dimen>
+    <dimen name="frame_child_fragment_frametv_artview_artist_textsize">@dimen/dimen_8sp</dimen>
+
+    <!--Art store-->
+    <!--Partner tile dimensions-->
+    <dimen name="frame_partnertile_dimen">@dimen/dimen_100dp_w</dimen>
+    <dimen name="frame_partnertile_image_dimen">@dimen/dimen_70dp_w</dimen>
+
+
+    <!--frametv_artwork_detail_fragment-->
+    <dimen name="frame_child_fragment_frametv_artist_textsize">@dimen/dimen_23sp</dimen>
+    <dimen name="frame_child_fragment_frametv_title_textsize">@dimen/dimen_12sp</dimen>
+    <dimen name="frame_child_fragment_frametv_price_textsize">@dimen/dimen_12sp</dimen>
+    <dimen name="frame_child_fragment_frametv_artwork_buttons_textsize">@dimen/dimen_34dp_h</dimen>
+    <dimen name="frame_child_fragment_frametv_artwork_buttons_layout_marginStart">@dimen/dimen_10dp_w</dimen>
+    <dimen name="frame_child_fragment_frametv_artwork_buttons_layout_marginEnd">@dimen/dimen_10dp_w</dimen>
+    <dimen name="frame_child_fragment_frametv_setbtn_custom_text_size_check">@dimen/dimen_10sp</dimen>
+    <dimen name="frame_child_fragment_frametv_frametv_artwork_preview_textsize">@dimen/dimen_10sp</dimen>
+    <dimen name="frame_child_fragment_frametv_frametv_frametv_artwork_matte_textsize">@dimen/dimen_10sp</dimen>
+    <dimen name="frame_child_fragment_frametv_scrollView2">@dimen/dimen_5dp_h</dimen>
+    <dimen name="frame_detail_view_text_size">@dimen/dimen_12sp</dimen>
+    <dimen name="frametv_artwork_detail_fragment_frametv_artwork_border_layout_marginStart">@dimen/dimen_12sp</dimen>
+    <dimen name="frametv_artwork_detail_fragment_frametv_artwork_border_layout_marginEnd">@dimen/dimen_12sp</dimen>
+    <dimen name="frametv_artwork_detail_fragment_viewpager_margin">0dp</dimen>
+
+    <!--fragment_frame_category_view-->
+    <dimen name="fragment_frame_category_view_buttons_container">@dimen/dimen_34dp_h</dimen>
+    <dimen name="fragment_frame_category_view_change_duration">@dimen/dimen_10sp</dimen>
+    <dimen name="fragment_frame_category_view_change_duration_marginStart">@dimen/dimen_3dp_w</dimen>
+    <dimen name="fragment_frame_category_view_frametv_set_collection_button_MarginEnd">@dimen/dimen_3dp_w</dimen>
+    <dimen name="fragment_frame_category_view_frametv_set_collection_button_custom_text_size_check">@dimen/dimen_10sp</dimen>
+    <dimen name="fragment_frame_category_view_frametv_set_collection_button_layout_constraintWidth_max">@dimen/dimen_203dp_w</dimen>
+
+    <!--frame_subscription_fragment-->
+    <dimen name="frame_subscription_fragment_imageView9_layout_width">@dimen/dimen_260dp_w</dimen>
+    <dimen name="frame_subscription_fragment_imageView9_layout_height">@dimen/dimen_147dp_h</dimen>
+    <dimen name="frame_subscription_fragment_subs_checkout_message_layout_width">@dimen/dimen_260dp_h</dimen>
+    <dimen name="frame_subscription_fragment_subs_checkout_message_textSize">@dimen/dimen_12sp</dimen>
+
+    <!--layout_not_image_selected-->
+    <dimen name="layout_not_image_selected_new_cold_start_layout_width">@dimen/dimen_120dp_w</dimen>
+    <dimen name="layout_not_image_selected_new_cold_start_layout_height">@dimen/dimen_80dp_h</dimen>
+    <dimen name="layout_not_image_selected_new_cold_start_textSize">@dimen/dimen_15sp</dimen>
+    <dimen name="layout_not_image_selected_MAPP_SID_FRAME_UPLOAD_MULTIPLE_PHOTOS_AT_ONCE_layout_marginTop">@dimen/dimen_13dp_h</dimen>
+    <dimen name="layout_not_image_selected_MAPP_SID_FRAME_UPLOAD_MULTIPLE_PHOTOS_AT_ONCE_textSize">@dimen/dimen_13sp</dimen>
+    <dimen name="layout_not_image_selected_MAPP_SID_FRAME_CREATE_MAT_FOR_SINGLE_PHOTO_textSize">@dimen/dimen_13sp</dimen>
+    <dimen name="layout_not_image_selected_MAPP_SID_FRAME_CREATE_COLLAGE_WITH_UP_3_PHOTOS_textSize">@dimen/dimen_13sp</dimen>
+
+    <!--frametv_subscription_features-->
+
+    <!--frame_add_photos_tile-->
+    <dimen name="frame_add_photos_tile_container_layout_width">@dimen/dimen_133dp_w</dimen>
+    <dimen name="frame_add_photos_tile_container_minHeight">@dimen/dimen_120dp_h</dimen>
+    <dimen name="frame_add_photos_tile_text_view_textSize">@dimen/dimen_17sp</dimen>
+
+    <!--frametv_subcategory_title_item-->
+    <dimen name="frametv_subcategory_title_item_layout_body_layout_width">@dimen/dimen_159dp_w</dimen>
+    <dimen name="frametv_subcategory_title_item_layout_body_layout_marginStart">@dimen/dimen_3dp_w</dimen>
+    <dimen name="frametv_subcategory_title_item_image_view_layout_height">@dimen/dimen_90dp_h</dimen>
+    <dimen name="frametv_subcategory_title_item_tvTitle_textSize">@dimen/dimen_20sp</dimen>
+    <dimen name="frametv_subcategory_title_item_title_bar_textSize">@dimen/dimen_11sp</dimen>
+
+    <!--frame_image_pageradapter_fragment-->
+
+    <!--frame_localphotos_fragment-->
+    <dimen name="frame_localphotos_fragment_Image_ViewPager_layout_height">@dimen/dimen_175dp_h</dimen>
+    <dimen name="frame_localphotos_fragment_add_first_full_view_layout_height">@dimen/dimen_18dp_h</dimen>
+    <dimen name="frame_localphotos_fragment_listItems_paddingTop">@dimen/dimen_8dp_h</dimen>
+    <dimen name="frame_localphotos_fragment_listItems_layout_marginEnd">@dimen/dimen_8dp_w</dimen>
+    <dimen name="frame_localphotos_fragment_listItems_layout_marginstart">@dimen/dimen_8dp_w</dimen>
+    <dimen name="frame_localphotos_fragment_button_create_mat_textSize">@dimen/dimen_11sp</dimen>
+    <dimen name="frame_localphotos_fragment_view3_layout_height">@dimen/dimen_54dp_h</dimen>
+    <dimen name="frame_localphotos_fragment_button_create_collage_textSize">@dimen/dimen_11sp</dimen>
+    <dimen name="frame_localphotos_fragment_button_save_on_frame_textSize">@dimen/dimen_11sp</dimen>
+
+    <!--frame_category_view_item-->
+    <dimen name="frame_category_view_item_picture_imageview_maxHeight">@dimen/dimen_200dp_h</dimen>
+    <dimen name="frame_category_view_item_title_textSize">@dimen/dimen_11sp</dimen>
+    <dimen name="frame_category_view_item_description_textSize">@dimen/dimen_8sp</dimen>
+    <dimen name="frame_category_view_item_frame_icon_like_layout_width">@dimen/dimen_30dp_w</dimen>
+    <dimen name="frame_category_view_item_frame_icon_like_layout_height">@dimen/dimen_30dp_w</dimen>
+    <dimen name="frame_category_view_item_frame_icon_like_paddingBottom">@dimen/dimen_5dp_h</dimen>
+    <dimen name="frame_category_view_item_frame_icon_like_paddingEnd">@dimen/dimen_5dp_w</dimen>
+    <dimen name="frame_category_view_item_frame_icon_like_paddingStart">@dimen/dimen_5dp_w</dimen>
+    <dimen name="frame_category_view_item_frame_icon_like_paddingTop">@dimen/dimen_5dp_h</dimen>
+
+    <!--frame_category_header-->
+    <dimen name="frame_category_header_frametv_artwork_back_layout_height">@dimen/dimen_50dp_h</dimen>
+    <dimen name="frame_category_header_frametv_category_name_textSize">@dimen/dimen_13sp</dimen>
+
+    <!--frame_color_option_element-->
+    <dimen name="frame_color_option_element_layout_root_layout_width">@dimen/dimen_58dp_w</dimen>
+    <dimen name="frame_color_option_element_layout_root_layout_height">@dimen/dimen_58dp_w</dimen>
+    <dimen name="frame_color_option_element_shadow_image_circle_unselected_layout_width">@dimen/dimen_27dp_w</dimen>
+    <dimen name="frame_color_option_element_shadow_image_circle_unselected_layout_height">@dimen/dimen_27dp_w</dimen>
+    <dimen name="frame_color_option_element_circule_color_unselected_layout_height">@dimen/dimen_27dp_w</dimen>
+    <dimen name="frame_color_option_element_circule_color_unselected_layout_width">@dimen/dimen_27dp_w</dimen>
+    <dimen name="frame_color_option_element_shadow_image_circle_selected_layout_width">@dimen/dimen_37dp_w</dimen>
+    <dimen name="frame_color_option_element_shadow_image_circle_selected_layout_height">@dimen/dimen_37dp_w</dimen>
+    <dimen name="frame_color_option_element_circule_color_selected_layout_width">@dimen/dimen_37dp_w</dimen>
+    <dimen name="frame_color_option_element_circule_color_selected_layout_height">@dimen/dimen_37dp_w</dimen>
+
+    <!--fragment_frame_manage_memership_button_container-->
+    <dimen name="fragment_frame_manage_memership_button_container_store_subscribe_button_layout_width">@dimen/dimen_203dp_w</dimen>
+    <dimen name="fragment_frame_manage_memership_button_container_store_subscribe_button_layout_height">@dimen/dimen_40dp_h</dimen>
+    <dimen name="fragment_frame_manage_memership_button_container_store_subscribe_textSize">@dimen/dimen_12sp</dimen>
+
+    <!--frame_edit_matte-->
+    <!--match_parent-->
+    <dimen name="frame_edit_matte_frametv_crop_main_view_layout_height">@dimen/dimen_189dp_h</dimen>
+    <dimen name="frame_edit_matte_btn_preview_layout_width">@dimen/dimen_50dp_w</dimen><!--match_parent-->
+    <dimen name="frame_edit_matte_btn_preview_layout_height">@dimen/dimen_50dp_w</dimen>
+    <dimen name="frame_edit_matte_btn_preview_layout_marginEnd">@dimen/dimen_8dp_w</dimen>
+    <dimen name="frame_edit_matte_btn_preview_container_marginEnd">@dimen/dimen_25dp_w</dimen>
+    <dimen name="frame_edit_matte_btn_preview_layout_marginStart">@dimen/dimen_8dp_w</dimen>
+    <dimen name="frame_edit_matte_btn_preview_layout_marginTop">@dimen/dimen_10dp_h</dimen>
+    <dimen name="frame_edit_matte_textView400_layout_marginTop">@dimen/dimen_5dp_h</dimen>
+    <dimen name="frame_edit_matte_textView400_textSize">@dimen/dimen_11sp</dimen>
+    <dimen name="frame_edit_matte_matteoption_options_recycler_circle_layout_marginTop">@dimen/dimen_47dp_h</dimen>
+    <dimen name="frame_edit_matte_matte_picker_tile_layout_marginTop">@dimen/dimen_57dp_h</dimen>
+    <dimen name="frame_edit_matte_matte_nameOfMatte_textSize">@dimen/dimen_10sp</dimen>
+    <dimen name="frame_edit_matte_btn_next_layout_height">@dimen/dimen_40dp_h</dimen>
+    <dimen name="frame_edit_matte_test_butons_layout_marginStart">@dimen/dimen_8dp_w</dimen>
+    <dimen name="frame_edit_matte_test_butons_layout_marginEnd">@dimen/dimen_8dp_w</dimen>
+
+    <!--frame_matte_crop-->
+    <dimen name="frame_matte_crop_collage_buttons_container_layout_marginTop">@dimen/dimen_10dp_h</dimen>
+    <dimen name="frame_matte_crop_COM_SID_PREVIEW_textSize">@dimen/dimen_11sp</dimen>
+    <dimen name="frame_matte_crop_nameOfMatte_textSize">@dimen/dimen_10sp</dimen>
+    <dimen name="frame_matte_crop_button_layout_layout_marginStart">@dimen/dimen_8dp_w</dimen>
+    <dimen name="frame_matte_crop_button_layout_layout_marginEnd">@dimen/dimen_8dp_w</dimen>
+    <dimen name="frame_crop_one_image_frametv_crop_main_view_layout_width">@dimen/dimen_335dp_w</dimen><!--match_parent-->
+    <dimen name="frame_crop_one_image_frametv_crop_main_view_layout_height">@dimen/dimen_189dp_h</dimen>
+    <dimen name="frame_matte_crop_button_layout_layout_height">@dimen/dimen_40dp_h</dimen>
+
+    <!--frame_matte_option_element-->
+    <dimen name="frame_matte_option_element_layout_root_layout_width">@dimen/dimen_108dp_h</dimen>
+    <dimen name="frame_matte_option_element_layout_root_layout_height">@dimen/dimen_75dp_h</dimen>
+    <dimen name="frame_matte_option_element_item_matte_unselected_layout_width">@dimen/dimen_95dp_h</dimen>
+    <dimen name="frame_matte_option_element_item_matte_unselected_layout_height">@dimen/dimen_55dp_h</dimen>
+    <dimen name="frame_matte_option_element_item_matte_selected_layout_width">@dimen/dimen_105dp_h</dimen>
+    <dimen name="frame_matte_option_element_item_matte_selected_layout_height">@dimen/dimen_60dp_h</dimen>
+
+    <dimen name="frame_matte_option_element_layout_root_layout_width_portrait">@dimen/dimen_90dp_w</dimen>
+    <dimen name="frame_matte_option_element_layout_root_layout_height_portrait">@dimen/dimen_160dp_h</dimen>
+    <dimen name="frame_matte_option_element_item_matte_unselected_layout_width_portrait">@dimen/dimen_76dp_w</dimen>
+    <dimen name="frame_matte_option_element_item_matte_unselected_layout_height_portrait">@dimen/dimen_135dp_h</dimen>
+    <dimen name="frame_matte_option_element_item_matte_selected_layout_width_portrait">@dimen/dimen_82dp_w</dimen>
+    <dimen name="frame_matte_option_element_item_matte_selected_layout_height_portrait">@dimen/dimen_146dp_h</dimen>
+
+    <!--frame_crop_multiple_images-->
+    <dimen name="frame_crop_multiple_images_back_arrow_layout_marginTop">@dimen/dimen_10dp_h</dimen>
+    <dimen name="frame_crop_multiple_images_COM_SID_PREVIEW_textSize">@dimen/dimen_10sp</dimen>
+    <dimen name="frame_crop_multiple_images_nameOfMatteCollage_textSize">@dimen/dimen_10sp</dimen>
+
+    <!--frame_crop_icon-->
+    <dimen name="frame_crop_icon_MAPP_SID_FRAME_CROP_textSize">@dimen/dimen_11sp</dimen>
+
+    <!--fragment_frame_preview-->
+    <dimen name="fragment_frame_preview_image_layout_marginTop">@dimen/dimen_47dp_h</dimen>
+    <dimen name="fragment_frame_preview_previewText_textSize">@dimen/dimen_23sp</dimen>
+    <dimen name="fragment_frame_preview_cancelBtnContainer_layout_height">@dimen/dimen_45dp_h</dimen>
+    <dimen name="fragment_frame_preview_cancelBtnContainer_layout_margin">@dimen/dimen_8dp_w</dimen>
+    <dimen name="fragment_frame_preview_cancelBtn_textSize">@dimen/dimen_15sp</dimen>
+
+    <!--fragment_childadapter-->
+    <dimen name="fragment_child_adapter_item_height">@dimen/dimen_115dp_h</dimen>
+    <dimen name="fragment_child_adapter_item_weight">@dimen/dimen_160dp_w</dimen>
+    <dimen name="fragment_child_adapter_item_left_params">@dimen/dimen_7dp_w</dimen>
+
+
+    <dimen name="fragment_detailview_pager_height_portrait">@dimen/dimen_201dp_h</dimen>
+    <dimen name="frame_collage_portrait_margin_detail">@dimen/dimen_11dp_w</dimen>
+    <dimen name="frame_collage_portrait_margin_edit">@dimen/dimen_11dp_w</dimen>
+
+    <!--fragment_ArtMode_settings-->
+    <dimen name="fragment_artmode_settings_item_title_height">@dimen/dimen_25dp_h</dimen>
+    <dimen name="fragment_artmode_settings_seek_bar_thumb_height">@dimen/dimen_19dp_h</dimen>
+
+    <!--frame_search-->
+    <dimen name="frame_search_result_item_margin_top">@dimen/dimen_10dp_w</dimen>
+    <dimen name="frame_search_result_item_margin_right">@dimen/dimen_10dp_w</dimen>
+    <dimen name="frame_search_result_item_margin_bottom">@dimen/dimen_10dp_w</dimen>
+    <dimen name="frame_search_result_item_margin_left">@dimen/dimen_10dp_w</dimen>
+
+    <!--frame_news_event-->
+    <dimen name="frame_news_first_item_margin_top">@dimen/dimen_20dp_h</dimen>
+    <dimen name="frame_news_item_margin_top">@dimen/dimen_17dp_h</dimen>
+    <dimen name="frame_news_item_margin_right">@dimen/dimen_5dp_w</dimen>
+    <dimen name="frame_news_item_margin_bottom">@dimen/dimen_17dp_h</dimen>
+    <dimen name="frame_news_item_margin_left">@dimen/dimen_5dp_w</dimen>
+    <dimen name="frame_news_only_text_margin_top">@dimen/dimen_17dp_h</dimen>
+    <dimen name="frame_news_only_text_margin_bottom">@dimen/dimen_17dp_h</dimen>
+
+    <!-- Frame Banner-->
+
+    <item name="internal_match_parent" format="integer" type="dimen">-1</item>
+    <item name="internal_wrap_content" format="integer" type="dimen">-2</item>
+
+    <dimen name="banner_container_height">@dimen/dimen_220dp_h</dimen>
+    <dimen name="banner_height">@dimen/dimen_202dp_h</dimen>
+    <dimen name="banner_item_membership_text_container_height">@dimen/dimen_88dp_h</dimen>
+    <dimen name="banner_item_membership_text_size">@dimen/dimen_15sp</dimen>
+    <dimen name="banner_item_membership_button_text_size">@dimen/dimen_15sp</dimen>
+    <dimen name="banner_item_membership_space_between_items">@dimen/dimen_6dp_h</dimen>
+    <dimen name="banner_item_membership_vertical_margin">@dimen/dimen_36dp_h</dimen>
+    <dimen name="banner_item_membership_horizontal_margin">@dimen/dimen_29dp_h</dimen>
+    <dimen name="banner_item_membership_text_height">@dimen/dimen_22dp_h</dimen>
+
+    <dimen name="banner_item_thumbnails_container_width">152dp</dimen>
+    <dimen name="banner_item_thumbnails_container_height">165dp</dimen>
+    <dimen name="banner_item_thumbnail_margin">@dimen/dimen_6dp_w</dimen>
+    <dimen name="banner_item_content_margin">@dimen/dimen_29dp_w</dimen>
+    <dimen name="banner_item_vertical_margin">@dimen/dimen_16dp_h</dimen>
+    <dimen name="banner_item_content_container_width">@dimen/dimen_177dp_w</dimen>
+    <dimen name="banner_item_content_button_height">@dimen/banner_item_content_button_max_height</dimen>
+    <dimen name="banner_item_content_button_max_height">@dimen/dimen_28dp_h</dimen>
+    <dimen name="banner_item_content_button_width">0dp</dimen>
+    <dimen name="banner_item_text_container_min_height">@dimen/dimen_70dp_h</dimen>
+    <dimen name="banner_item_text_container_max_height">@dimen/dimen_124dp_h</dimen>
+    <dimen name="banner_item_title_text_size">@dimen/dimen_15sp</dimen>
+    <dimen name="banner_item_message_text_size">@dimen/dimen_10sp</dimen>
+    <dimen name="banner_item_space_between_text">@dimen/dimen_5dp_h</dimen>
+    <dimen name="banner_item_thumbnail_width">95dp</dimen>
+    <dimen name="banner_item_thumbnail_height">47dp</dimen>
+    <dimen name="banner_item_thumbnail_vertical_margin">24dp</dimen>
+    <dimen name="banner_item_thumbnail_space_between_thumbnails">13dp</dimen>
+
+    <style name="custom_banner_item_button" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="paddingStart">@dimen/dimen_11dp_w</item>
+        <item name="paddingEnd">@dimen/dimen_11dp_w</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+    </style>
+
+
+    <!-- Frame Partners Details  -->
+    <dimen name="partner_details_horizontal_margin">@dimen/dimen_18dp_w</dimen>
+    <dimen name="partner_details_icon_width">@dimen/dimen_71dp_w</dimen>
+    <dimen name="partner_details_icon_height">@dimen/dimen_40dp_h</dimen>
+    <dimen name="partner_details_title_text_size">@dimen/dimen_11sp</dimen>
+    <dimen name="partner_details_addr_text_size">@dimen/dimen_8sp</dimen>
+    <dimen name="partner_details_space_between_info_and_icon">@dimen/dimen_24dp_w</dimen>
+
+</resources>

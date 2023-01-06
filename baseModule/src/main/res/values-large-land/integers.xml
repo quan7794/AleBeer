@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="frame_local_photos_total_columns">6</integer>
+    <dimen name="frame_local_photos_spinner_drop_down_height">@dimen/dimen_470dp_h</dimen>
+
+</resources>
