@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.wac.android.architecture.base.BaseViewModel" />
+            type="app.wac.team.wacbase.base.BaseViewModel" />
     </data>
     <FrameLayout
         android:layout_width="0dp"

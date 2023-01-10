@@ -17,8 +17,8 @@ object DateUtils {
     val DATE_PATTERN =
         Pattern.compile("^(?:(?!0000)[0-9]{4}([-/.]?)(?:(?:0?[1-9]|1[0-2])([-/.]?)(?:0?[1-9]|1[0-9]|2[0-8])|(?:0?[13-9]|1[0-2])([-/.]?)(?:29|30)|(?:0?[13578]|1[02])([-/.]?)31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)([-/.]?)0?2([-/.]?)29)$")
 
-    fun validateDateFormat(dateText: String?): Boolean {
-        return DATE_PATTERN.matcher(dateText).matches()
+    fun validateDateFormat(dateText: String): Boolean {
+        return DATE_PATTERN.matcher(dateText.chars().toString()).matches()
     }
 
     fun now(): Timestamp {
@@ -56,7 +56,7 @@ object DateUtils {
         return Timestamp.valueOf(dateStr)
     }
 
-    fun getYear(date: Date?): Int {
+    fun getYear(date: Date): Int {
         val c = Calendar.getInstance()
         c.time = date
         return c[Calendar.YEAR]
@@ -72,7 +72,7 @@ object DateUtils {
         )
     }
 
-    fun getMonth(date: Date?): Int {
+    fun getMonth(date: Date): Int {
         val c = Calendar.getInstance()
         c.time = date
         return c[Calendar.MONTH] + 1
@@ -88,7 +88,7 @@ object DateUtils {
         )
     }
 
-    fun getDay(date: Date?): Int {
+    fun getDay(date: Date): Int {
         val c = Calendar.getInstance()
         c.time = date
         return c[Calendar.DAY_OF_MONTH]
@@ -96,15 +96,10 @@ object DateUtils {
 
     @Throws(ParseException::class)
     fun getDay(dateStr: String?, format: String?): Int {
-        return getDay(
-            formatDate(
-                dateStr,
-                format
-            )
-        )
+        return getDay(formatDate(dateStr, format))
     }
 
-    fun getWeekDay(date: Date?): Int {
+    fun getWeekDay(date: Date): Int {
         val c = Calendar.getInstance()
         c.time = date
         return c[Calendar.DAY_OF_WEEK]
@@ -112,12 +107,7 @@ object DateUtils {
 
     @Throws(ParseException::class)
     fun getWeekDay(dateStr: String?, format: String?): Int {
-        return getWeekDay(
-            formatDate(
-                dateStr,
-                format
-            )
-        )
+        return getWeekDay(formatDate(dateStr, format))
     }
 
     fun getDayCountInMonth(month: Int, isLeapYear: Boolean): Int {
@@ -129,7 +119,7 @@ object DateUtils {
             } else if (month == Calendar.APRIL || month == Calendar.JUNE || month == Calendar.SEPTEMBER || month == Calendar.NOVEMBER
             ) {
                 dayCount = 30
-            } else if (month == Calendar.FEBRUARY) {
+            } else {
                 dayCount = if (isLeapYear) {
                     29
                 } else {
@@ -160,7 +150,7 @@ object DateUtils {
             .time - endDate.time) / 86400000 else (endDate.time - startDate.time) / 86400000
     }
 
-    fun addOneDay(date: Date?): Date {
+    fun addOneDay(date: Date): Date {
         val c = Calendar.getInstance()
         c.time = date
         c[Calendar.DAY_OF_MONTH] = c[Calendar.DAY_OF_MONTH] + 1
@@ -168,7 +158,7 @@ object DateUtils {
     }
 
     //减少一天
-    fun lessenOneDay(date: Date?): Date {
+    fun lessenOneDay(date: Date): Date {
         val c = Calendar.getInstance()
         c.time = date
         c[Calendar.DAY_OF_MONTH] = c[Calendar.DAY_OF_MONTH] - 1
@@ -177,10 +167,7 @@ object DateUtils {
 
     @Throws(Exception::class)
     fun lessenOneDay(dateStr: String?): String {
-        val date = formatDate(
-            dateStr,
-            DEFAULT_FORMAT_DATE_WITHOUT_TIME
-        )
+        val date = formatDate(dateStr, DEFAULT_FORMAT_DATE_WITHOUT_TIME)
         val c = Calendar.getInstance()
         c.time = date
         c[Calendar.DAY_OF_MONTH] = c[Calendar.DAY_OF_MONTH] - 1
@@ -198,33 +185,33 @@ object DateUtils {
     /*
 	 * Get start time by year and month
 	 */
-    fun getDateFromYearAndMonth(year: Int, month: Int): Date? {
-        var year = year
-        var month = month
-        if (month > 12) {
-            year++
-            month -= 12
+    fun getDateFromYearAndMonth(year: Int, month: Int): Date {
+        var mYear = year
+        var mMonth = month
+        if (mMonth > 12) {
+            mYear++
+            mMonth -= 12
         }
-        var resultDate = Date(year - 1900, month - 1, 1)
+        var resultDate = Date(mYear - 1900, mMonth - 1, 1)
         resultDate = resetTime(resultDate)
         return resultDate
     }
 
-    fun getDateFromSeason(year: Int, season: Int): Date? {
-        var year = year
-        var season = season
-        if (season < 1) {
+    fun getDateFromSeason(year: Int, season: Int): Date {
+        var mYear = year
+        var mSeason = season
+        if (mSeason < 1) {
             throw RuntimeException("must be greater than 1")
         }
-        if (season > 4) {
-            year += season / 4
-            season %= 4
+        if (mSeason > 4) {
+            mYear += mSeason / 4
+            mSeason %= 4
         }
-        val month = (season - 1) * 3 + 1
-        return getDateFromYearAndMonth(year, month)
+        val month = (mSeason - 1) * 3 + 1
+        return getDateFromYearAndMonth(mYear, month)
     }
 
-    fun getLastMomentOfDay(original: Date?): Date {
+    fun getLastMomentOfDay(original: Date): Date {
         val calendar = Calendar.getInstance()
         calendar.time = original
         calendar[Calendar.HOUR_OF_DAY] = calendar.getActualMaximum(Calendar.HOUR_OF_DAY)
@@ -332,7 +319,7 @@ object DateUtils {
     /**
      * Get a date before a month
      */
-    fun getBeforeMonthDate(date: Date?): Date {
+    fun getBeforeMonthDate(date: Date): Date {
         val cal = Calendar.getInstance()
         cal.time = date
         cal.add(Calendar.MONTH, -1)
@@ -345,9 +332,8 @@ object DateUtils {
 
     /**
      * Take the first day of the week of the current day, Sunday
-     * @param args
      */
-    fun getFirstWeekDay(date: Date?): Date {
+    fun getFirstWeekDay(date: Date): Date {
         val cal = Calendar.getInstance()
         cal.time = date
         cal[Calendar.DAY_OF_WEEK] = Calendar.SUNDAY // Sunday of the first day of the week
@@ -371,14 +357,13 @@ object DateUtils {
     fun getFirstWeekDayStr(dateStr: String?): String {
         val df =
             SimpleDateFormat(DEFAULT_FORMAT_DATE_WITHOUT_TIME, Locale.getDefault())
-        return df.format(getFirstWeekDay(dateStr))
+        return getFirstWeekDay(dateStr)?.let { df.format(it) } ?: ""
     }
 
     /**
      * Take the last day of the week of the current day, Saturday
-     * @param args
      */
-    fun getLastWeekDay(date: Date?): Date {
+    fun getLastWeekDay(date: Date): Date {
         val cal = Calendar.getInstance()
         cal.time = date
         cal[Calendar.DAY_OF_WEEK] = Calendar.SATURDAY //Saturday of the last day of the week
@@ -388,10 +373,7 @@ object DateUtils {
     fun getLastWeekDay(dateStr: String?): Date? {
         var date: Date? = null
         try {
-            date = formatDate(
-                dateStr,
-                DEFAULT_FORMAT_DATE_WITHOUT_TIME
-            )
+            date = formatDate(dateStr, DEFAULT_FORMAT_DATE_WITHOUT_TIME)
             date = getLastWeekDay(date)
         } catch (e: ParseException) {
             e.printStackTrace()
@@ -402,14 +384,13 @@ object DateUtils {
     fun getLastWeekDayStr(dateStr: String?): String {
         val df =
             SimpleDateFormat(DEFAULT_FORMAT_DATE_WITHOUT_TIME, Locale.getDefault())
-        return df.format(getLastWeekDay(dateStr))
+        return getLastWeekDay(dateStr)?.let { df.format(it) } ?: ""
     }
 
     /**
      * Take the first day of the quarter
-     * @param args
      */
-    fun getFirstQuarter(date: Date?): Date {
+    fun getFirstQuarter(date: Date): Date {
         val cal = Calendar.getInstance()
         cal.time = date
         val month = getQuarterInMonth(
@@ -424,10 +405,7 @@ object DateUtils {
     fun getFirstQuarter(dateStr: String?): Date? {
         var date: Date? = null
         try {
-            date = formatDate(
-                dateStr,
-                DEFAULT_FORMAT_DATE_WITHOUT_TIME
-            )
+            date = formatDate(dateStr, DEFAULT_FORMAT_DATE_WITHOUT_TIME)
             date = getFirstQuarter(date)
         } catch (e: ParseException) {
             e.printStackTrace()
@@ -438,14 +416,13 @@ object DateUtils {
     fun getFirstQuarterStr(dateStr: String?): String {
         val df =
             SimpleDateFormat(DEFAULT_FORMAT_DATE_WITHOUT_TIME, Locale.getDefault())
-        return df.format(getFirstQuarter(dateStr))
+        return getFirstQuarter(dateStr)?.let { df.format(it) } ?: ""
     }
 
     /**
      *Take the last day of the quarter on the date
-     * @param args
      */
-    fun getLastQuarter(date: Date?): Date {
+    fun getLastQuarter(date: Date): Date {
         val cal = Calendar.getInstance()
         cal.time = date
         val month = getQuarterInMonth(

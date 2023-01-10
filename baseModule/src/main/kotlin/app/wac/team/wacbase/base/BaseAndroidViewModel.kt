@@ -58,7 +58,7 @@ abstract class BaseAndroidViewModel(application: Application) : AndroidViewModel
     override fun onCleared() {
         super.onCleared()
         Timber.d("onCleared", "Enter")
-        mCompositeDisposable?.clear()
+        mCompositeDisposable.clear()
         viewModelJob.cancel()
     }
 

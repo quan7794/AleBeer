@@ -8,19 +8,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import app.wac.team.wacbase.basemodule.R
 import app.wac.team.wacbase.event.SingleLiveEvent
 import app.wac.team.wacbase.ext.getTagName
-import app.wac.team.wacbase.ext.injectObject
 import app.wac.team.wacbase.ext.logD
 import app.wac.team.wacbase.ext.observe
-import com.example.basemodule.R
 
 abstract class BaseVmFragment<VM : ViewModel> : Fragment() {
 
     abstract val viewModel: VM
     protected val TAG: String by getTagName()
 
-    val logger: ILogger by injectObject()
     private var mRootView: View? = null
     protected var currentOrientation = -1
 

@@ -2,11 +2,11 @@ package app.wac.team.wacbase.ext
 
 import androidx.lifecycle.viewModelScope
 import app.wac.team.wacbase.base.BaseViewModel
-import app.wac.team.wacbase.base.ILogger
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.retryWhen
+import timber.log.Timber
 import java.io.IOException
 import kotlin.reflect.KClass
 
@@ -65,9 +65,8 @@ suspend fun <T> Flow<T>.processRequestFlow(
     return retryWhen { cause, attempt ->
         val isRetry = attempt < retryTimes
         if (isRetry) {
-            val log: ILogger by injectObject()
             val TAG = this@processRequestFlow::class.java.simpleName
-            log.d(TAG, "processRequest", "retrying ${attempt + 1} times... sendRequest ${cause.message}")
+            Timber.d(TAG, "processRequest", "retrying ${attempt + 1} times... sendRequest ${cause.message}")
             onRetry.invoke(cause, attempt)
         }
         delay(delayTime)
@@ -93,7 +92,7 @@ suspend fun <T> Flow<T>.processRequestWithSuspend(
     }
 }
 
-inline fun Job.cancelWork() = run { if (isActive) cancel() }
+fun Job.cancelWork() = run { if (isActive) cancel() }
 
 fun BaseViewModel.launchIO(action: suspend () -> Unit, onFail: (Throwable) -> Unit = {}) {
     val exception = CoroutineExceptionHandler { _, exception -> onFail.invoke(exception) }.plus(Dispatchers.IO)

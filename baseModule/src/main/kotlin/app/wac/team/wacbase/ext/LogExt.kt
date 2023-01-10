@@ -2,40 +2,41 @@ package app.wac.team.wacbase.ext
 
 import app.wac.team.wacbase.base.BaseViewModel
 import app.wac.team.wacbase.base.BaseVmFragment
+import timber.log.Timber
 
 fun BaseVmFragment<*>.logD(func: String, msg: String = "Entry") {
-    logger.d(this::class.java.simpleName, func, msg)
+    Timber.d(this::class.java.simpleName, func, msg)
 }
 
 fun BaseVmFragment<*>.logV(func: String, msg: String = "Entry") {
-    logger.v(this::class.java.simpleName, func, msg)
+    Timber.v(this::class.java.simpleName, func, msg)
 }
 
 
 fun BaseViewModel.logD(func: String, msg: String = "Entry") {
-    logger.d(this::class.java.simpleName, func, msg)
+    Timber.d(this::class.java.simpleName, func, msg)
 }
 
 fun BaseViewModel.logW(func: String, msg: String = "Entry") {
-    logger.w(this::class.java.simpleName, func, msg)
+    Timber.w(this::class.java.simpleName, func, msg)
 }
 
 fun BaseViewModel.logE(func: String, msg: String = "Entry") {
-    logger.e(this::class.java.simpleName, func, msg)
+    Timber.e(this::class.java.simpleName, func, msg)
 }
 
 fun BaseVmFragment<*>.logE(func: String, msg: String = "Entry") {
-    logger.e(this::class.java.simpleName, func, msg)
+    Timber.e(this::class.java.simpleName, func, msg)
 }
 
 fun BaseVmFragment<*>.logI(func: String, msg: String = "Entry") {
-    logger.i(this::class.java.simpleName, func, msg)
+    Timber.i(this::class.java.simpleName, func, msg)
 }
 
 fun BaseViewModel.logI(func: String, msg: String = "Entry") {
-    logger.i(this::class.java.simpleName, func, msg)
+    Timber.i(this::class.java.simpleName, func, msg)
 }
 
 fun BaseVmFragment<*>.logW(func: String, msg: String = "Entry") {
-    logger.w(this::class.java.simpleName, func, msg)
+    Timber.w(this::class.java.simpleName, func, msg)
 }

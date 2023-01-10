@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-  <!-- WELCOME TITLE ARTSTORE-->
-    <integer name="frame_local_photos_total_columns">5</integer>
-    <dimen name="frame_local_photos_spinner_drop_down_height">@dimen/dimen_832dp_h</dimen>
-</resources>

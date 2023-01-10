@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- WELCOME TITLE ARTSTORE-->
-    <integer name="locale_mirror_flip">0</integer>
-    <integer name="frame_local_photos_total_columns">3</integer>
-    <dimen name="frame_local_photos_spinner_drop_down_height">@dimen/dimen_470dp_h</dimen>
-    <dimen name="preview_art_on_details_percent">.33</dimen>
 
-    <dimen name="preview_timerbar_percent">.9</dimen>
-    <dimen name="preview_image_percent">.8</dimen>
 </resources>

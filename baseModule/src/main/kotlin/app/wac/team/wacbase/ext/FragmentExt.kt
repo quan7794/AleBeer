@@ -21,7 +21,7 @@ inline fun FragmentManager.inTransactionAllowingStateLoss(func: FragmentTransact
     beginTransaction().func().commitAllowingStateLoss()
 }
 
-inline fun <F> AppCompatActivity.replaceFragment(
+fun <F> AppCompatActivity.replaceFragment(
     fragment: F,
     id: Int,
     tag: String? = null,
@@ -32,7 +32,7 @@ inline fun <F> AppCompatActivity.replaceFragment(
     }
 }
 
-inline fun <F> BaseVmDbFragment<*, *>.replaceFragment(
+fun <F> BaseVmDbFragment<*, *>.replaceFragment(
     fragment: F,
     id: Int,
     tag: String? = null,
@@ -46,7 +46,7 @@ inline fun <F> BaseVmDbFragment<*, *>.replaceFragment(
     }
 }
 
-inline fun <F> BaseVmDbFragment<*, *>.replaceFragment(
+fun <F> BaseVmDbFragment<*, *>.replaceFragment(
     fragmentManager: FragmentManager?,
     fragment: F,
     id: Int,
@@ -61,7 +61,7 @@ inline fun <F> BaseVmDbFragment<*, *>.replaceFragment(
     }
 }
 
-inline fun <F> AppCompatActivity.addFragment(
+fun <F> AppCompatActivity.addFragment(
     fragment: F,
     id: Int,
     tag: String? = null,
@@ -72,7 +72,7 @@ inline fun <F> AppCompatActivity.addFragment(
     }
 }
 
-inline fun <F> FragmentManager.addFragment(id: Int, fragment: F, allowBackStack: Boolean = false) where F : Fragment {
+fun <F> FragmentManager.addFragment(id: Int, fragment: F, allowBackStack: Boolean = false) where F : Fragment {
     val tag = fragment::class.simpleName
     inTransactionAllowingStateLoss {
         if (allowBackStack) addToBackStack(tag)
@@ -80,7 +80,7 @@ inline fun <F> FragmentManager.addFragment(id: Int, fragment: F, allowBackStack:
     }
 }
 
-inline fun <T : Fragment> FragmentManager.removeFragment(frag: KClass<T>) {
+fun <T : Fragment> FragmentManager.removeFragment(frag: KClass<T>) {
     val fragment = findFragmentByTag(frag.simpleName)
     inTransactionAllowingStateLoss {
         remove(fragment!!)
@@ -98,15 +98,15 @@ fun Fragment.recreate(fragmentManager: FragmentManager? = null) {
     }
 }
 
-inline fun Fragment.navigateUp() {
+fun Fragment.navigateUp() {
     requireActivity().supportFragmentManager.popBackStack()
 }
 
-inline fun <T : Fragment> Fragment.navigateUpInclusive(fragment: KClass<T>) {
+fun <T : Fragment> Fragment.navigateUpInclusive(fragment: KClass<T>) {
     requireActivity().supportFragmentManager.popBackStack(fragment.simpleName, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 }
 
-inline fun Fragment.navigateUpInclusive(tag: String) {
+fun Fragment.navigateUpInclusive(tag: String) {
     requireActivity().supportFragmentManager.popBackStack(tag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 }
 
@@ -116,14 +116,14 @@ inline fun <reified T : ViewModel> BaseVmDbFragment<*, *>.getNormalViewModel(vm:
 inline fun <reified T : ViewModel> BaseVmDbFragment<*, *>.getSharedNormalViewModel(vm: BaseViewModel) =
     ViewModelProvider(this.requireActivity(), ViewModelProviderFactory(vm))[T::class.java]
 
-inline fun Fragment.showToast(message: String?) {
+fun Fragment.showToast(message: String?) {
     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 }
 
-inline fun Fragment.formatResId(@StringRes firstResID: Int, @StringRes secondResID: Int): String {
+fun Fragment.formatResId(@StringRes firstResID: Int, @StringRes secondResID: Int): String {
     return String.format(requireContext().getString(firstResID), requireContext().getString(secondResID))
 }
 
-inline fun Fragment.formatResId(@StringRes resID: Int, value: String): String {
+fun Fragment.formatResId(@StringRes resID: Int, value: String): String {
     return String.format(requireContext().getString(resID), value)
 }
