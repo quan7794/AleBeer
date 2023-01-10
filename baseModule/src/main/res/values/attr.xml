@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FrameCheckmarkButton">
+        <attr name="custom_text" format="string"/>
+        <attr name="custom_padding_start" format="dimension"/>
+        <attr name="custom_padding_end" format="dimension"/>
+        <attr name="show_checkmark" format="boolean"/>
+        <attr name="custom_text_size_check" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="CustomTVPluginViewPager">
+        <attr name="swipeable" format="boolean"/>
+    </declare-styleable>
+</resources>

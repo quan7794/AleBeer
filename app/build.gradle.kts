@@ -20,8 +20,7 @@ android {
         targetSdk = Depends.Versions.targetSdkVersion
         versionCode = Depends.Versions.appVersionCode
         versionName = Depends.generateVersionName()
-        testInstrumentationRunner =
-            Depends.Libraries.testInstrumentationRunner
+        testInstrumentationRunner = Depends.Libraries.testInstrumentationRunner
         javaCompileOptions.annotationProcessorOptions.arguments += mapOf(
             "room.schemaLocation" to "$projectDir/schemas"
         )
@@ -61,6 +60,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 
     lintOptions {

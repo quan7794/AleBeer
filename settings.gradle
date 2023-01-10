@@ -1,2 +1,3 @@
 rootProject.name = 'WacBase'
 include ':app'
+include ':baseModule'

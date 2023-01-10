@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Portland-->
+    <dimen name="p_sliding_next_content_height">@dimen/dimen_76dp_h</dimen>
+    <dimen name="view_detail_preview_thumbnail_height">174dp</dimen>
+    <dimen name="view_detail_preview_thumbnail_width">98dp</dimen>
+    <dimen name="tab_subcategory_gap">@dimen/dimen_47dp_w</dimen>
+    <integer name="sero_photo_columns_num">4</integer>
+    <dimen name="sero_edit_text_width">@dimen/dimen_492dp_w</dimen>
+    <dimen name="sero_edit_preview_top_margin">@dimen/dimen_18dp_h</dimen>
+    <dimen name="sero_edit_preview_bottom_margin">@dimen/dimen_48dp_h</dimen>
+    <dimen name="sero_edit_preview_thumnail_width">@dimen/dimen_211dp_w</dimen>
+    <dimen name="sero_edit_preview_thumnail_height">@dimen/dimen_375dp_w</dimen>
+    <dimen name="sero_add_button_bg_radius">@dimen/dimen_20dp_h</dimen>
+    <dimen name="sero_main_button_width">@dimen/dimen_220dp_w</dimen>
+    <dimen name="sero_main_button_height">@dimen/dimen_40dp_h</dimen>
+    <dimen name="sero_main_button_padding">@dimen/dimen_15dp_w</dimen>
+    <dimen name="sero_view_detail_width">@dimen/dimen_312dp_w</dimen>
+    <dimen name="sero_edit_preview_thumnail_bottom_margin">@dimen/dimen_20dp_h</dimen>
+    <dimen name="sero_edit_preview_color_top_margin">@dimen/dimen_10dp_h</dimen>
+    <dimen name="sero_edit_preview_color_height">@dimen/dimen_40dp_h</dimen>
+    <dimen name="sero_edit_preview_color_item_radius">40dp</dimen>
+    <dimen name="sero_edit_preview_color_item_selected_radius">40dp</dimen>
+    <dimen name="sero_select_photo_cp_padding_top">@dimen/dimen_11dp_h</dimen>
+    <dimen name="sero_select_photo_cp_margin_start">@dimen/dimen_18dp_w</dimen>
+    <dimen name="sero_select_photo_cp_margin_end">@dimen/dimen_9dp_w</dimen>
+    <dimen name="sero_select_photo_divider_height">2px</dimen>
+    <dimen name="sero_select_photo_cp_size">@dimen/dimen_29dp_w</dimen>
+    <dimen name="sero_select_photo_gallery_text_height">@dimen/dimen_16dp_h</dimen>
+    <dimen name="sero_select_photo_gallery_category_padding_start">@dimen/dimen_24dp_w</dimen>
+    <dimen name="sero_select_photo_gallery_category_padding_end">@dimen/dimen_24dp_w</dimen>
+
+    <!-- My Photo -->
+    <dimen name="sero_sliding_view_button_my_photo_margin_top">@dimen/dimen_16dp_h</dimen>
+    <dimen name="sero_sliding_button_my_photo_margin_top">@dimen/dimen_14dp_h</dimen>
+    <dimen name="sero_sliding_info_my_photo_margin_bottom">@dimen/dimen_61dp_h</dimen>
+    <dimen name="sero_main_button_margin_bottom">@dimen/dimen_22dp_h</dimen>
+
+    <!-- Sliding Category -->
+    <dimen name="sero_sliding_template_name_margin_w">30dp</dimen>
+    <dimen name="sero_sliding_template_name_font_size">45dp</dimen>
+    <dimen name="sero_sliding_template_artwork_title_font_size">22dp</dimen>
+    <dimen name="sero_sliding_template_artwork_sub_title_margin_top">9dp</dimen>
+    <dimen name="sero_sliding_template_artwork_sub_title_font_size">17dp</dimen>
+    <integer name="device_width">360</integer>
+</resources>
