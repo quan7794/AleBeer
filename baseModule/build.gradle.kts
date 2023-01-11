@@ -4,12 +4,11 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-    id("kotlin-android-extensions")
 }
 
 android {
-    namespace = "com.example.basemodule"
-    compileSdk = 33
+    namespace = "app.wac.team.wacbase.basemodule"
+    compileSdk = Depends.Versions.androidCompileSdkVersion
 
     defaultConfig {
         minSdk = Depends.Versions.androidCompileSdkVersion
@@ -37,7 +36,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
-    lintOptions {
+    lint {
         lint.abortOnError = false
     }
     buildFeatures {
@@ -66,7 +65,8 @@ dependencies {
     implementation(Depends.Libraries.paging_runtime_ktx)
     implementation(Depends.Libraries.constraintlayout)
 
-    implementation(Depends.Libraries.junit)
-    implementation(Depends.Libraries.test_ext_junit)
-    implementation(Depends.Libraries.espresso_core)
+    testImplementation(Depends.Libraries.junit)
+    androidTestImplementation(Depends.Libraries.test_runner)
+    androidTestImplementation(Depends.Libraries.test_ext_junit)
+    androidTestImplementation(Depends.Libraries.espresso_core)
 }

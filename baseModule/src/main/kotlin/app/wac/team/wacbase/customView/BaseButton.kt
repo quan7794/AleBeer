@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.ContextThemeWrapper
 import android.widget.Button
 import androidx.core.content.withStyledAttributes
-import com.example.basemodule.R
+import app.wac.team.wacbase.basemodule.R
 
 @SuppressLint("AppCompatCustomView")
 class BaseButton(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : Button(ContextThemeWrapper(context, R.style.ONEUI_BUTTON), attrs, defStyleAttr) {

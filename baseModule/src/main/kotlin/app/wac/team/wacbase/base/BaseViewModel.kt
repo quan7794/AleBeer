@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.wac.team.wacbase.event.SingleLiveEvent
-import app.wac.team.wacbase.ext.injectObject
 import app.wac.team.wacbase.ext.logD
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -26,7 +25,6 @@ abstract class BaseViewModel : ViewModel() {
     protected val _clickEvent = SingleLiveEvent<UIState>()
     val clickEvent: LiveData<UIState> get() = _clickEvent
 
-    val logger: ILogger by injectObject()
     val handlerCoroutineException = CoroutineExceptionHandler { _, exception -> manageCoroutineException(exception) }
 
     open fun manageCoroutineException(exception: Any) {
@@ -34,7 +32,7 @@ abstract class BaseViewModel : ViewModel() {
             if (exception is AppException) errorMessage.value = exception.message
             else if (exception is Throwable) {
                 errorMessage.value = exception.localizedMessage
-                logD("manageCoroutineException", exception.localizedMessage)
+                exception.localizedMessage?.let { logD("manageCoroutineException", it) }
                 customCoroutineException(exception)
             }
             showCommonProgressBar.value = false
