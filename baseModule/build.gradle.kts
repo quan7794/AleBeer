@@ -11,7 +11,7 @@ android {
     compileSdk = Depends.Versions.androidCompileSdkVersion
 
     defaultConfig {
-        minSdk = Depends.Versions.androidCompileSdkVersion
+        minSdk = Depends.Versions.minSdkVersion
         targetSdk = Depends.Versions.targetSdkVersion
 
         testInstrumentationRunner = Depends.Libraries.testInstrumentationRunner

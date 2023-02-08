@@ -82,6 +82,7 @@ tasks.withType<KotlinCompile> {
 }
 
 dependencies {
+    implementation(project(":baseModule"))
     implementation(Depends.Libraries.kotlin)
     implementation(Depends.Libraries.kotlin_reflect)
     implementation(Depends.Libraries.android_core_ktx)

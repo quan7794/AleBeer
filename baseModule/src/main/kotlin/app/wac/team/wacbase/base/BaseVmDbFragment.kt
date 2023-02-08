@@ -12,7 +12,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import app.wac.team.wacbase.ext.logD
 
-abstract class BaseVmDbFragment<DB : ViewDataBinding, VM : ViewModel> : BaseVmFragment<VM>() {
+abstract class BaseVmDbFragment<VM : ViewModel, DB : ViewDataBinding> : BaseVmFragment<VM>() {
 
     private var _binding: DB? = null
 

@@ -80,9 +80,7 @@ inline fun <T : ViewBinding> Fragment.viewInflateBinding(
         cleanUp = cleanUp
     )
 
-inline fun <T : ViewBinding> AppCompatActivity.viewInflateBinding(
-    crossinline bindingInflater: (LayoutInflater) -> T,
-) =
+inline fun <T : ViewBinding> AppCompatActivity.viewInflateBinding(crossinline bindingInflater: (LayoutInflater) -> T) =
     lazy(LazyThreadSafetyMode.NONE) {
         bindingInflater.invoke(layoutInflater)
     }

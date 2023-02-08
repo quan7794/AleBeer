@@ -1,15 +1,13 @@
 package app.wac.team.wacbase.ui.feature.firstScreen
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import app.wac.team.wacbase.R
+import app.wac.team.wacbase.base.BaseVmDbFragment
+import app.wac.team.wacbase.databinding.FragmentFirstScreenBinding
 
-class FirstScreenFragment : Fragment() {
+class FirstScreenFragment : BaseVmDbFragment<FirstScreenViewModel, FragmentFirstScreenBinding>() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View? {
-        return inflater.inflate(R.layout.fragment_first_screen, container, false)
-    }
+    override fun getLayoutId() = R.layout.fragment_first_screen
+    override val viewModel: FirstScreenViewModel by viewModels()
+
 }
