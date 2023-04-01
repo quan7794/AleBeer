@@ -6,4 +6,6 @@
     <string name="error_timeout">Oops! Slow Connection</string>
     <string name="error_unknown">Unknown Error! That’s all we know</string>
     <string name="description">Description:\n\n %1$s</string>
+    <string name="product">Product</string>
+    <string name="favorite">Favorite</string>
 </resources>

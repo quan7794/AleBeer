@@ -1,88 +1,67 @@
 package app.wac.team.wacbase.util.extension
-
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.viewbinding.ViewBinding
-import kotlin.properties.ReadOnlyProperty
-import kotlin.reflect.KProperty
+import app.wac.team.wacbase.base.preference.AppSettings
+import kotlin.math.abs
 
 fun <T> LifecycleOwner.observe(liveData: LiveData<T>, action: (t: T) -> Unit) {
     liveData.observe(this, Observer { it?.let { t -> action(t) } })
 }
 
-class FragmentViewBindingDelegate<T : ViewBinding>(
-    val fragment: Fragment,
-    val viewBindingFactory: (View) -> T,
-    val cleanUp: ((T?) -> Unit)?,
-) : ReadOnlyProperty<Fragment, T> {
-
-    // A backing property to hold our value
-    private var binding: T? = null
-
-    init {
-        fragment.lifecycle.addObserver(object : DefaultLifecycleObserver {
-            val viewLifecycleOwnerObserver = Observer<LifecycleOwner?> { owner ->
-                if (owner == null) {
-                    cleanUp?.invoke(binding)
-                    binding = null
-                }
-            }
-
-            override fun onCreate(owner: LifecycleOwner) {
-                fragment.viewLifecycleOwnerLiveData.observeForever(
-                    viewLifecycleOwnerObserver
-                )
-            }
-
-            override fun onDestroy(owner: LifecycleOwner) {
-                fragment.viewLifecycleOwnerLiveData.removeObserver(
-                    viewLifecycleOwnerObserver
-                )
-            }
-        })
-    }
-
-    override fun getValue(
-        thisRef: Fragment,
-        property: KProperty<*>,
-    ): T {
-        val binding = binding
-        if (binding != null && binding.root === thisRef.view) {
-            return binding
-        }
-
-        val view = thisRef.view
-            ?: throw IllegalStateException("Should not attempt to get bindings when Fragment's view is null.")
-
-        return viewBindingFactory(view).also { this.binding = it }
-    }
-}
-
-inline fun <T : ViewBinding> Fragment.viewBinding(
-    crossinline viewBindingFactory: (View) -> T,
-    noinline cleanUp: ((T?) -> Unit)? = null,
-): FragmentViewBindingDelegate<T> =
-    FragmentViewBindingDelegate(this, { v -> viewBindingFactory(v) }, cleanUp)
-
-inline fun <T : ViewBinding> Fragment.viewInflateBinding(
-    crossinline bindingInflater: (LayoutInflater) -> T,
-    noinline cleanUp: ((T?) -> Unit)? = null,
-): FragmentViewBindingDelegate<T> =
-    FragmentViewBindingDelegate(
-        fragment = this,
-        viewBindingFactory = { v -> bindingInflater(LayoutInflater.from(v.context)) },
-        cleanUp = cleanUp
-    )
-
-inline fun <T : ViewBinding> AppCompatActivity.viewInflateBinding(
-    crossinline bindingInflater: (LayoutInflater) -> T,
-) =
+inline fun <T : ViewBinding> AppCompatActivity.viewInflateBinding(crossinline bindingInflater: (LayoutInflater) -> T) =
     lazy(LazyThreadSafetyMode.NONE) {
         bindingInflater.invoke(layoutInflater)
     }
+
+fun Int.mapToNearestNumber(setOfNumbers: Set<Int>): Int {
+    var nearestNumber = 0
+    var smallestDifference = Int.MAX_VALUE
+
+    for (number in setOfNumbers) {
+        val difference = abs(this - number)
+        if (difference < smallestDifference) {
+            smallestDifference = difference
+            nearestNumber = number
+        }
+    }
+    return nearestNumber
+}
+
+
+fun Int.mapNightModeToSeekBar() = when (this) {
+    AppCompatDelegate.MODE_NIGHT_YES -> 0
+    AppCompatDelegate.MODE_NIGHT_NO -> 1
+    else -> 2
+}
+
+fun Int.mapSeekbarToNightMode() = when (this) {
+    0 -> AppCompatDelegate.MODE_NIGHT_YES
+    1 -> AppCompatDelegate.MODE_NIGHT_NO
+    else -> AppSettings.MODE_NIGHT_DEFAULT
+}
+
+fun Context.showKeyboard(view: View) {
+    this.getSystemService(Context.INPUT_METHOD_SERVICE)?.let { imm ->
+        (imm as InputMethodManager).showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+    }
+}
+
+fun EditText.onDone(callback: () -> Unit) {
+    setOnEditorActionListener { _, actionId, _ ->
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
+            callback.invoke()
+            return@setOnEditorActionListener true
+        }
+        false
+    }
+}

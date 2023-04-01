@@ -12,18 +12,6 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:navGraph="@navigation/main_navigation"
-        tools:context="app.web.drjackycv.presentation.main.MainActivity" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/activityMainSwitchThemeFab"
-        style="@style/Widget.MaterialComponents.FloatingActionButton"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_launcher_background"
-        app:fabCustomSize="56dp"
-        app:tint="?android:attr/textColorPrimaryInverse" />
+        tools:context=".ui.main.MainActivity" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

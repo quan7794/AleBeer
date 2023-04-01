@@ -1,4 +1,6 @@
 import app.wac.team.buildsrc.Depends
+import java.util.Properties
+import java.io.FileInputStream
 
 plugins {
     id("com.android.library")
@@ -6,12 +8,19 @@ plugins {
     kotlin("kapt")
 }
 
+val localProperties = Properties()
+try {
+    localProperties.load(FileInputStream(rootProject.file("local.properties")))
+} catch (e: Exception) {
+    logger.warn("No Local Properties File Found!")
+}
+
 android {
     namespace = "app.wac.team.wacbase.basemodule"
     compileSdk = Depends.Versions.androidCompileSdkVersion
 
     defaultConfig {
-        minSdk = Depends.Versions.androidCompileSdkVersion
+        minSdk = Depends.Versions.minSdkVersion
         targetSdk = Depends.Versions.targetSdkVersion
 
         testInstrumentationRunner = Depends.Libraries.testInstrumentationRunner
@@ -62,6 +71,7 @@ dependencies {
     implementation(Depends.Libraries.rx_java)
     implementation(Depends.Libraries.rx_java_android)
     implementation(Depends.Libraries.gson)
+    implementation(Depends.Libraries.glide)
     implementation(Depends.Libraries.paging_runtime_ktx)
     implementation(Depends.Libraries.constraintlayout)
 

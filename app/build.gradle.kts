@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         multiDexEnabled = true
-        applicationId = "app.wac.team.mvvmtemplate"
+        applicationId = "app.wac.team.wacbase"
         minSdk = Depends.Versions.minSdkVersion
         targetSdk = Depends.Versions.targetSdkVersion
         versionCode = Depends.Versions.appVersionCode
@@ -82,6 +82,12 @@ tasks.withType<KotlinCompile> {
 }
 
 dependencies {
+    // room database
+    implementation(Depends.Libraries.roomRuntime)
+    kapt(Depends.Libraries.roomCompiler)
+    implementation(Depends.Libraries.roomKtx)
+
+    implementation(project(":baseModule"))
     implementation(Depends.Libraries.kotlin)
     implementation(Depends.Libraries.kotlin_reflect)
     implementation(Depends.Libraries.android_core_ktx)
@@ -104,6 +110,7 @@ dependencies {
 
     //dependency injection
     implementation(Depends.Libraries.hilt_android)
+    implementation(Depends.Libraries.hilt_navigation_fragment)
     kapt(Depends.Libraries.hilt_android_compiler)
     kapt(Depends.Libraries.hilt_compiler)
     implementation(Depends.Libraries.java_inject)
@@ -118,12 +125,17 @@ dependencies {
     implementation(Depends.Libraries.glide)
     kapt(Depends.Libraries.glide_compiler)
     implementation(Depends.Libraries.lottie)
+    implementation(Depends.Libraries.swipeRefresh)
+    implementation(Depends.Libraries.autoBlurView)
+    implementation(Depends.Libraries.material)
     //other
     implementation(Depends.Libraries.timber)
     implementation(Depends.Libraries.material)
     debugImplementation(Depends.Libraries.leak_canary)
     debugImplementation(Depends.Libraries.chucker)
     releaseImplementation(Depends.Libraries.chucker_no_op)
+    implementation(Depends.Libraries.timber)
+    //    debugImplementation(Depends.Libraries.leak_canary) //todo: Enable later.
     //test
     testImplementation(Depends.Libraries.junit)
     androidTestImplementation(Depends.Libraries.test_runner)
