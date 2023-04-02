@@ -2,6 +2,7 @@ package app.interview.ale.beer.ui.feature.beerScreen
 
 import android.os.Build
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ import mva3.adapter.ListSection
 import mva3.adapter.MultiViewAdapter
 import mva3.adapter.util.InfiniteLoadingHelper
 import timber.log.Timber
+import java.lang.Integer.min
 import javax.inject.Inject
 
 
@@ -77,11 +79,9 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
 
     private fun restoreLastState(savedInstanceState: Bundle?) {
         if (savedInstanceState != null) {
-            val currentBeerList = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                savedInstanceState.getParcelableArrayList(BEER_LIST, Beer::class.java)
-            } else {
-                savedInstanceState.getParcelableArrayList<Beer>(BEER_LIST)
-            }
+            val currentBeerList = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                savedInstanceState.getParcelableArrayList(BEER_LIST_KEY, Beer::class.java)
+            else savedInstanceState.getParcelableArrayList<Beer>(BEER_LIST_KEY)
             currentBeerList?.let { beerSection.addAll(currentBeerList).also { infiniteLoadingHelper.markCurrentPageLoaded() } }
         }
     }
@@ -99,16 +99,28 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
                 }
             }
         }
-        observe(viewModel.uiSingleEvent) {
-            when (it) {
-                else -> {}
+        observe(viewModel.uiSingleEvent) { event ->
+            when (event) {
+                is BeerUiState.FetchError -> infiniteLoadingHelper.markAllPagesLoaded().also { showToast(event.message) }
+                else -> {
+                    showToast(getString(R.string.unknow_event))
+                }
             }
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList(BEER_LIST, ArrayList(beerSection.data))
+        outState.putParcelableArrayList(BEER_LIST_KEY, ArrayList(beerSection.data))
+        outState.putParcelable(BEER_LIST_STATE_KEY, binding.beerList.layoutManager?.onSaveInstanceState())
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        if (savedInstanceState != null) {
+            val listState = savedInstanceState.getParcelable<Parcelable>(BEER_LIST_STATE_KEY)
+            binding.beerList.layoutManager?.onRestoreInstanceState(listState)
+        }
     }
 
     override fun onDestroy() {
@@ -117,6 +129,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
     }
 
     companion object {
-        const val BEER_LIST = "beerList"
+        const val BEER_LIST_KEY = "beerList"
+        const val BEER_LIST_STATE_KEY = "beerListState"
     }
 }
