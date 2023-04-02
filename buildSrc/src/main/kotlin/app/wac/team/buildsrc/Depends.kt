@@ -3,8 +3,33 @@ package app.wac.team.buildsrc
 object Depends {
 
     object Versions {
+        // Splash screen
+        const val splashScreen = "1.0.0"
+
+        // Crop photo
+        const val crop_photo = "4.5.0"
+
+        // Room database
+        const val room = "2.5.0"
+
+        // Google billing
+        const val billingKtx = "5.1.0"
+
+        //openai app lib
+        const val openAi = "3.1.0"
+        const val chatKit = "0.4.1"
+        const val voiceDialog = "1.1.0"
+
+        //ui
+        const val autoBlurLib = "1.2.1"
+
+        // Google ads
+        const val googleAds = "21.5.0"
+
         const val appVersionCode = 1_000_000
-        const val gradleVersion = "7.3.1"
+        const val gradleVersion = "7.4.2"
+        const val googleServiceVersion = "4.3.15"
+        const val fireBomVersion = "31.2.3"
         const val androidCompileSdkVersion = 33
         const val targetSdkVersion = 33
         const val minSdkVersion = 21
@@ -21,7 +46,7 @@ object Depends {
         const val lifecycleVersion = "2.4.0"
         const val constraintLayoutVersion = "2.1.4"
         const val supportVersion = "1.4.1"
-        const val materialVersion = "1.4.0"
+        const val materialVersion = "1.7.0"
         const val coreKtxVersion = "1.9.0"
         const val navigationVersion = "2.5.2"
         const val pagingVersion = "3.1.1"
@@ -29,11 +54,13 @@ object Depends {
         const val fragmentExtVersion = "1.4.0"
         const val recyclerviewVersion = "1.3.0-rc01"
         const val hiltVersion = "2.44"
+        const val hiltNavigationFragment = "1.0.0"
         const val hiltCompilerVersion = "1.0.0"
         const val hiltNavigationComposeVersion = "1.0.0-alpha03"
         const val javaxInjectVersion = "1"
         const val timberVersion = "5.0.1"
-        const val lottieVersion = "4.2.2"
+        const val lottieVersion = "5.2.0"
+        const val swipeRefresh = "1.1.0"
         const val glideVersion = "4.14.2"
         const val autoDispose = "2.1.1"
         const val dataStorePreferenceVersion = "1.0.0"
@@ -61,6 +88,7 @@ object Depends {
 
     object ClassPaths {
         const val gradle = "com.android.tools.build:gradle:${Versions.gradleVersion}"
+        const val google_services = "com.google.gms:google-services:${Versions.googleServiceVersion}"
         const val kotlin_gradle_plugin = "gradle-plugin"
         const val navigation_safe_args_gradle_plugin =
             "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationVersion}"
@@ -71,10 +99,43 @@ object Depends {
     }
 
     object Libraries {
+        //firebase
+        const val fireBOM = "com.google.firebase:firebase-bom:${Versions.fireBomVersion}"
+        const val firebaseAnalytic = "com.google.firebase:firebase-analytics-ktx"
+        const val fireStore = "com.google.firebase:firebase-firestore-ktx"
+
+        // Splash screen
+        const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
+
+        // crop photo
+        const val cropPhoto = "com.vanniktech:android-image-cropper:${Versions.crop_photo}"
+        // room database
+        const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
+        const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+        const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
+
+        // google billing
+        const val billing_ktx = "com.android.billingclient:billing-ktx:${Versions.billingKtx}"
+
+        // google ads
+        const val google_ads = "com.google.android.gms:play-services-ads:${Versions.googleAds}"
+
+        // ai app lib
+        const val open_ai_bom = "com.aallam.openai:openai-client-bom:${Versions.openAi}"
+        const val open_ai = "com.aallam.openai:openai-client"
+        const val open_ai_ktor = "io.ktor:ktor-client-okhttp"
+        const val chat_kit = "com.github.stfalcon-studio:Chatkit:${Versions.chatKit}"
+        const val voice_dialog = "com.algolia.instantsearch:voice:${Versions.voiceDialog}"
+
+        //ui
+        const val autoBlurView = "com.github.mmin18:realtimeblurview:${Versions.autoBlurLib}"
+
+        //common lib
         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlinVersion}"
         const val kotlin_reflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlinVersion}"
         const val multidex = "androidx.multidex:multidex:${Versions.multidexVersion}"
         const val hilt_android = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
+        const val hilt_navigation_fragment = "androidx.hilt:hilt-navigation-fragment:${Versions.hiltNavigationFragment}"
         const val hilt_android_compiler = "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"
         const val hilt_compiler = "androidx.hilt:hilt-compiler:${Versions.hiltCompilerVersion}"
         const val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragmentExtVersion}"
@@ -119,6 +180,7 @@ object Depends {
         const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
         const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glideVersion}"
         const val lottie = "com.airbnb.android:lottie:${Versions.lottieVersion}"
+        const val swipeRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefresh}"
         const val autodispose = "com.uber.autodispose2:autodispose:${Versions.autoDispose}"
         const val autodispose_android = "com.uber.autodispose2:autodispose-android:${Versions.autoDispose}"
         const val autodispose_android_arch = "com.uber.autodispose2:autodispose-androidx-lifecycle:${Versions.autoDispose}"

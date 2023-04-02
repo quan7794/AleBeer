@@ -1,9 +1,18 @@
 import app.wac.team.buildsrc.Depends
+import java.util.Properties
+import java.io.FileInputStream
 
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
+}
+
+val localProperties = Properties()
+try {
+    localProperties.load(FileInputStream(rootProject.file("local.properties")))
+} catch (e: Exception) {
+    logger.warn("No Local Properties File Found!")
 }
 
 android {
@@ -62,6 +71,7 @@ dependencies {
     implementation(Depends.Libraries.rx_java)
     implementation(Depends.Libraries.rx_java_android)
     implementation(Depends.Libraries.gson)
+    implementation(Depends.Libraries.glide)
     implementation(Depends.Libraries.paging_runtime_ktx)
     implementation(Depends.Libraries.constraintlayout)
 
