@@ -10,7 +10,6 @@ import app.interview.ale.base.common.BaseVmDbFragment
 import app.interview.ale.base.ext.observe
 import app.interview.ale.beer.R
 import app.interview.ale.beer.databinding.FragmentBeerBinding
-import app.interview.ale.beer.di.module.navigationModule.AppNavigator
 import app.interview.ale.beer.domain.entities.Beer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -19,17 +18,15 @@ import mva3.adapter.ListSection
 import mva3.adapter.MultiViewAdapter
 import mva3.adapter.util.InfiniteLoadingHelper
 import timber.log.Timber
-import java.lang.Integer.min
-import javax.inject.Inject
 
 
 @Suppress("RemoveExplicitTypeArguments")
 @AndroidEntryPoint
 class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding>() {
     override fun getLayoutId() = R.layout.fragment_beer
-
-    @Inject
-    lateinit var navigator: AppNavigator
+//
+//    @Inject
+//    lateinit var navigator: AppNavigator
 
     override val viewModel: BeerFragmentViewModel by viewModels()
 
@@ -50,24 +47,21 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
         super.setUpViews(savedInstanceState)
         binding.vm = viewModel
         initBeerList()
-        restoreLastState(savedInstanceState)
+        initSwipeAction()
     }
 
-    override fun setBindingVariables() {
-        super.setBindingVariables()
-        binding.refresher.setOnRefreshListener {
-            lifecycleScope.launch {
-                beerSection.clear()
-                viewModel.fetchPage(toNextPage = false)
-                binding.refresher.isRefreshing = false
-            }
-        }
+    private fun addToFavorite(position: Int, note: String) {
+        showToast("Saving to Room")
+        val favoriteBeer = beerSection.get(position).copy(note = note)
+        beerSection.set(position, favoriteBeer)
     }
 
     private fun initBeerList() {
         if (beerAdapter == null) beerAdapter = MultiViewAdapter()
         beerAdapter?.apply {
-            registerItemBinders(BeerItemBinder())
+            registerItemBinders(BeerItemBinder { position, note ->
+                addToFavorite(position, note)
+            })
             addSection(beerSection)
             setInfiniteLoadingHelper(infiniteLoadingHelper)
         }
@@ -77,12 +71,13 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
         }
     }
 
-    private fun restoreLastState(savedInstanceState: Bundle?) {
-        if (savedInstanceState != null) {
-            val currentBeerList = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
-                savedInstanceState.getParcelableArrayList(BEER_LIST_KEY, Beer::class.java)
-            else savedInstanceState.getParcelableArrayList<Beer>(BEER_LIST_KEY)
-            currentBeerList?.let { beerSection.addAll(currentBeerList).also { infiniteLoadingHelper.markCurrentPageLoaded() } }
+    private fun initSwipeAction() {
+        binding.refresher.setOnRefreshListener {
+            lifecycleScope.launch {
+                beerSection.clear()
+                viewModel.fetchPage(toNextPage = false)
+                binding.refresher.isRefreshing = false
+            }
         }
     }
 
@@ -102,9 +97,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
         observe(viewModel.uiSingleEvent) { event ->
             when (event) {
                 is BeerUiState.FetchError -> infiniteLoadingHelper.markAllPagesLoaded().also { showToast(event.message) }
-                else -> {
-                    showToast(getString(R.string.unknow_event))
-                }
+                else -> showToast(getString(R.string.unknow_event))
             }
         }
     }
@@ -115,9 +108,14 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
         outState.putParcelable(BEER_LIST_STATE_KEY, binding.beerList.layoutManager?.onSaveInstanceState())
     }
 
+    @Suppress("DEPRECATION")
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         if (savedInstanceState != null) {
+            val currentBeerList = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                savedInstanceState.getParcelableArrayList(BEER_LIST_KEY, Beer::class.java)
+            else savedInstanceState.getParcelableArrayList<Beer>(BEER_LIST_KEY)
+            currentBeerList?.let { beerSection.addAll(currentBeerList).also { infiniteLoadingHelper.markCurrentPageLoaded() } }
             val listState = savedInstanceState.getParcelable<Parcelable>(BEER_LIST_STATE_KEY)
             binding.beerList.layoutManager?.onRestoreInstanceState(listState)
         }

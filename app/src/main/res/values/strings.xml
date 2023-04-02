@@ -10,4 +10,5 @@
     <string name="note_hint">Add your note here</string>
     <string name="save">Save</string>
     <string name="unknow_event">Unknow event</string>
+    <string name="saving">Saving</string>
 </resources>

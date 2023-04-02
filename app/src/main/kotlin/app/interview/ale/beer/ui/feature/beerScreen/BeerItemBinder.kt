@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import app.interview.ale.base.ext.enableEdit
+import app.interview.ale.base.ext.enableView
 import app.interview.ale.base.ext.gone
 import app.interview.ale.beer.R
 import app.interview.ale.beer.domain.entities.Beer
@@ -25,7 +26,7 @@ import mva3.adapter.ItemBinder
 import mva3.adapter.ItemViewHolder
 
 
-class BeerItemBinder : ItemBinder<Beer, BeerItemBinder.BeerViewHolder>() {
+class BeerItemBinder(val onSaveClick: (position: Int, note: String) -> Unit) : ItemBinder<Beer, BeerItemBinder.BeerViewHolder>() {
     override fun createViewHolder(parent: ViewGroup) = BeerViewHolder(inflate(parent, R.layout.beer_item))
 
     override fun canBindData(item: Any) = item is Beer
@@ -55,7 +56,15 @@ class BeerItemBinder : ItemBinder<Beer, BeerItemBinder.BeerViewHolder>() {
         var imImage: ImageView = item.findViewById(R.id.ivImage)
         var etNote: TextInputEditText = item.findViewById(R.id.etNote)
         var etNoteLayout: TextInputLayout = item.findViewById(R.id.etNoteLayout)
-        var btnSave: MaterialButton = item.findViewById(R.id.btnSave)
+        var btnSave: MaterialButton = item.findViewById<MaterialButton?>(R.id.btnSave).apply {
+            setOnClickListener {
+                if (etNote.length() != 0) {
+                    text = resources.getText(R.string.saving)
+                    etNote.enableEdit(false)
+                    onSaveClick(absoluteAdapterPosition, etNote.text.toString())
+                }
+            }
+        }
 
         fun ImageView.loadImage(imageUrl: String) {
             val requestBuilder = Glide.with(item.context)
