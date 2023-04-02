@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/dimen_8dp_w"
+    android:background="@color/md_theme_onPrimary"
+    app:strokeWidth="@dimen/dimen_2dp_w"
+    android:layout_margin="@dimen/dimen_10dp_w">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/dimen_2dp_w"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/imageArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/dimen_8dp_w"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/md_theme_primary"
+            app:strokeWidth="@dimen/dimen_1dp_w">
+
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="@dimen/dimen_70dp_w"
+                android:layout_height="@dimen/dimen_70dp_w"
+                android:background="@color/md_theme_secondary"
+                android:contentDescription="@string/beer_image"
+                tools:src="@drawable/image_place_holder" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/dimen_8dp_w"
+            app:layout_constraintEnd_toStartOf="@+id/btnSave"
+            app:layout_constraintStart_toEndOf="@+id/imageArea"
+            app:layout_constraintTop_toTopOf="@+id/imageArea"
+            tools:text="Beer name" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingHorizontal="@dimen/dimen_8dp_w"
+            app:layout_constraintBottom_toBottomOf="@+id/imageArea"
+            app:layout_constraintEnd_toStartOf="@+id/btnSave"
+            app:layout_constraintStart_toEndOf="@+id/imageArea"
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            tools:text="Beer Price" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="@+id/imageArea"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageArea" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etNoteLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_18dp_h"
+            app:layout_constraintTop_toBottomOf="@+id/imageArea">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/note_hint"
+                android:inputType="textAutoComplete"
+                android:lines="1"
+                android:textColor="@color/md_theme_primary"
+                android:textColorHint="#757575" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

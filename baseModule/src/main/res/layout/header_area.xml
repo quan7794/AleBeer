@@ -20,7 +20,7 @@
 
         <variable
             name="viewModel"
-            type="app.wac.team.base.common.header.HeaderViewModel" />
+            type="app.interview.ale.base.common.header.HeaderViewModel" />
     </data>
 
     <LinearLayout

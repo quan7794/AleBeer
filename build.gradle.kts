@@ -1,10 +1,10 @@
 plugins {
-    id("org.sonarqube") version app.wac.team.buildsrc.Depends.Versions.sonarqubeVersion
+    id("org.sonarqube") version app.interview.ale.buildsrc.Depends.Versions.sonarqubeVersion
     detekt
-    id("com.github.ben-manes.versions") version app.wac.team.buildsrc.Depends.Versions.checkDependencyVersionsVersion
-    id("com.osacky.doctor") version app.wac.team.buildsrc.Depends.Versions.gradleDoctorVersion
-    id("com.autonomousapps.dependency-analysis") version app.wac.team.buildsrc.Depends.Versions.dependencyAnalysisVersion
-    id("org.sonatype.gradle.plugins.scan") version app.wac.team.buildsrc.Depends.Versions.sonatypeScanGradleVersion
+    id("com.github.ben-manes.versions") version app.interview.ale.buildsrc.Depends.Versions.checkDependencyVersionsVersion
+    id("com.osacky.doctor") version app.interview.ale.buildsrc.Depends.Versions.gradleDoctorVersion
+    id("com.autonomousapps.dependency-analysis") version app.interview.ale.buildsrc.Depends.Versions.dependencyAnalysisVersion
+    id("org.sonatype.gradle.plugins.scan") version app.interview.ale.buildsrc.Depends.Versions.sonatypeScanGradleVersion
 }
 
 buildscript {
@@ -13,16 +13,16 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(app.wac.team.buildsrc.Depends.ClassPaths.gradle)
+        classpath(app.interview.ale.buildsrc.Depends.ClassPaths.gradle)
         classpath(
             kotlin(
-                app.wac.team.buildsrc.Depends.ClassPaths.kotlin_gradle_plugin,
-                version = app.wac.team.buildsrc.Depends.Versions.kotlinVersion
+                app.interview.ale.buildsrc.Depends.ClassPaths.kotlin_gradle_plugin,
+                version = app.interview.ale.buildsrc.Depends.Versions.kotlinVersion
             )
         )
-        classpath(app.wac.team.buildsrc.Depends.ClassPaths.navigation_safe_args_gradle_plugin)
-        classpath(app.wac.team.buildsrc.Depends.ClassPaths.hilt_android_gradle_plugin)
-        classpath(app.wac.team.buildsrc.Depends.ClassPaths.sonarqube_gradle_plugin)
+        classpath(app.interview.ale.buildsrc.Depends.ClassPaths.navigation_safe_args_gradle_plugin)
+        classpath(app.interview.ale.buildsrc.Depends.ClassPaths.hilt_android_gradle_plugin)
+        classpath(app.interview.ale.buildsrc.Depends.ClassPaths.sonarqube_gradle_plugin)
     }
 }
 

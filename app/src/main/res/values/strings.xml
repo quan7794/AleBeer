@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name">WacBase</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">AleBeer</string>
     <string name="error_no_internet">No Internet Connection</string>
     <string name="error_timeout">Oops! Slow Connection</string>
     <string name="error_unknown">Unknown Error! That’s all we know</string>
     <string name="description">Description:\n\n %1$s</string>
-    <string name="product">Product</string>
+    <string name="beer">Beer</string>
     <string name="favorite">Favorite</string>
+    <string name="beer_image">Beer Image</string>
+    <string name="note_hint">Add your note here</string>
+    <string name="save">Save</string>
 </resources>

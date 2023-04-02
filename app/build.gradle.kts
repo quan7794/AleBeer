@@ -1,4 +1,4 @@
-import app.wac.team.buildsrc.Depends
+import app.interview.ale.buildsrc.Depends
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         multiDexEnabled = true
-        applicationId = "app.wac.team.wacbase"
+        applicationId = "app.interview.ale.beer"
         minSdk = Depends.Versions.minSdkVersion
         targetSdk = Depends.Versions.targetSdkVersion
         versionCode = Depends.Versions.appVersionCode
@@ -128,6 +128,11 @@ dependencies {
     implementation(Depends.Libraries.swipeRefresh)
     implementation(Depends.Libraries.autoBlurView)
     implementation(Depends.Libraries.material)
+    //multiViewAdapter
+    implementation(Depends.Libraries.multiViewAdapter)
+    implementation(Depends.Libraries.multiViewAdapter_dataBinding_ext)
+    implementation(Depends.Libraries.multiViewAdapter_decoration_ext)
+    implementation(Depends.Libraries.multiViewAdapter_diffUtil_ext)
     //other
     implementation(Depends.Libraries.timber)
     implementation(Depends.Libraries.material)

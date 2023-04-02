@@ -1,4 +1,4 @@
-import app.wac.team.buildsrc.Depends
+import app.interview.ale.buildsrc.Depends
 import java.util.Properties
 import java.io.FileInputStream
 
@@ -16,7 +16,7 @@ try {
 }
 
 android {
-    namespace = "app.wac.team.wacbase.basemodule"
+    namespace = "app.interview.ale.beer.basemodule"
     compileSdk = Depends.Versions.androidCompileSdkVersion
 
     defaultConfig {
