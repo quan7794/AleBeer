@@ -4,15 +4,14 @@ import mva3.adapter.ItemViewHolder
 import mva3.adapter.MultiViewAdapter
 
 class AleBeerAdapter : MultiViewAdapter() {
-    val textHolder: MutableMap<Int, String> = mutableMapOf()
 
     override fun onViewAttachedToWindow(holder: ItemViewHolder<*>) {
         super.onViewAttachedToWindow(holder)
-        if (holder is BeerItemBinder.BeerViewHolder) holder.enableTextWatcher()
+        if (holder is BeerItemBinder.BeerViewHolder) holder.enableListener()
     }
 
     override fun onViewDetachedFromWindow(holder: ItemViewHolder<*>) {
         super.onViewDetachedFromWindow(holder)
-        if (holder is BeerItemBinder.BeerViewHolder) holder.enableTextWatcher(false)
+        if (holder is BeerItemBinder.BeerViewHolder) holder.enableListener(false)
     }
 }

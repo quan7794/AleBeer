@@ -136,7 +136,7 @@ dependencies {
     //other
     implementation(Depends.Libraries.timber)
     implementation(Depends.Libraries.material)
-    debugImplementation(Depends.Libraries.leak_canary)
+//    debugImplementation(Depends.Libraries.leak_canary)
     debugImplementation(Depends.Libraries.chucker)
     releaseImplementation(Depends.Libraries.chucker_no_op)
     implementation(Depends.Libraries.timber)

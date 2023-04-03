@@ -12,12 +12,12 @@ import app.interview.ale.beer.R
 import app.interview.ale.beer.databinding.FragmentBeerBinding
 import app.interview.ale.beer.domain.entities.Beer
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import mva3.adapter.ListSection
-import mva3.adapter.MultiViewAdapter
 import mva3.adapter.util.InfiniteLoadingHelper
 import timber.log.Timber
 
@@ -26,7 +26,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding>() {
     override fun getLayoutId() = R.layout.fragment_beer
-//
+
 //    @Inject
 //    lateinit var navigator: AppNavigator
 
@@ -38,7 +38,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
         object : InfiniteLoadingHelper(binding.beerList, R.layout.item_loading_footer, Int.MAX_VALUE) {
             override fun onLoadNextPage(page: Int) {
                 lifecycleScope.launch {
-                    delay(2000)
+                    Timber.d("Start Fetch")
                     viewModel.fetchPage()
                 }
             }
@@ -47,7 +47,6 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
 
     override fun setUpViews(savedInstanceState: Bundle?) {
         super.setUpViews(savedInstanceState)
-        binding.vm = viewModel
         initBeerList()
         initSwipeAction()
     }
@@ -81,6 +80,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
                 beerSection.clear()
                 viewModel.fetchPage(toNextPage = false)
                 binding.refresher.isRefreshing = false
+                infiniteLoadingHelper.markCurrentPageLoaded()
             }
         }
     }
@@ -91,21 +91,29 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
             viewModel.currentPage.collect { page ->
                 Timber.d("Got beer: ${page?.beers}")
                 page?.beers?.let { beers ->
-                    beers.asFlow().map {
-                        val cache = viewModel.getIfExist(it.id)
-                        if (cache != null) it.copy(note = cache.note) else it
-                    }.collect { beer -> beerSection.add(beer).also { Timber.d("Add to screen: $beer") } }
-
-                    if (viewModel.pageIndex.value == 1) binding.beerList.scrollToPosition(0)
-                    delay(300)
-                    infiniteLoadingHelper.markCurrentPageLoaded()
+                    addBeersAsync(beers).invokeOnCompletion {
+                        Timber.d("Add beers completed")
+                        if (viewModel.pageIndex.value == 1) binding.beerList.scrollToPosition(0)
+                        infiniteLoadingHelper.markCurrentPageLoaded()
+                    }
                 }
             }
         }
         observe(viewModel.uiSingleEvent) { event ->
             when (event) {
-                is BeerUiState.FetchError -> infiniteLoadingHelper.markAllPagesLoaded().also { showToast(event.message) }
+                is BeerUiState.FetchError -> infiniteLoadingHelper.markCurrentPageLoaded().also { showToast(event.message) }
                 else -> showToast(getString(R.string.unknow_event))
+            }
+        }
+    }
+
+    private suspend fun addBeersAsync(beers: List<Beer>): Job {
+        return lifecycleScope.launch {
+            beers.asFlow().map {
+                val cache = viewModel.getIfExist(it.id)
+                if (cache != null) it.copy(note = cache.note) else it
+            }.collect { beer ->
+                beerSection.add(beer).also { Timber.d("Add to screen: $beer") }
             }
         }
     }
@@ -120,6 +128,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         if (savedInstanceState != null) {
+            Timber.d("Entry")
             val currentBeerList = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
                 savedInstanceState.getParcelableArrayList(BEER_LIST_KEY, Beer::class.java)
             else savedInstanceState.getParcelableArrayList<Beer>(BEER_LIST_KEY)
