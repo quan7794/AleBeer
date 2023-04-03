@@ -13,6 +13,9 @@ import app.interview.ale.beer.databinding.FragmentBeerBinding
 import app.interview.ale.beer.domain.entities.Beer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import mva3.adapter.ListSection
 import mva3.adapter.MultiViewAdapter
@@ -53,6 +56,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
     private fun addToFavorite(position: Int, note: String) {
         showToast("Saving to Room")
         val favoriteBeer = beerSection.get(position).copy(note = note)
+        viewModel.addToLocalDb(favoriteBeer)
         beerSection.set(position, favoriteBeer)
     }
 
@@ -60,6 +64,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
         if (beerAdapter == null) beerAdapter = MultiViewAdapter()
         beerAdapter?.apply {
             registerItemBinders(BeerItemBinder { position, note ->
+                showToast("Add to position $position, with note: $note")
                 addToFavorite(position, note)
             })
             addSection(beerSection)
@@ -87,7 +92,11 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
             viewModel.currentPage.collect { page ->
                 Timber.d("Got beer: ${page?.beers}")
                 page?.beers?.let { beers ->
-                    beerSection.addAll(beers)
+                    beers.asFlow().map {
+                        val cache = viewModel.getIfExist(it.id)
+                        if (cache != null) it.copy(note = cache.note) else it
+                    }.collect { beer -> beerSection.add(beer).also { Timber.d("Add to screen: $beer") } }
+
                     if (viewModel.pageIndex.value == 1) binding.beerList.scrollToPosition(0)
                     delay(300)
                     infiniteLoadingHelper.markCurrentPageLoaded()

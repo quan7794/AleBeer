@@ -8,6 +8,7 @@ import app.interview.ale.beer.data.product.repository.BeerRepository
 import app.interview.ale.beer.domain.entities.Beer
 import app.interview.ale.beer.domain.entities.BeerPage
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -43,14 +44,20 @@ class BeerFragmentViewModel @Inject constructor(private val beerRepository: Beer
         val pageResult = beerRepository.fetchBeers(fetchIndex, limit)
         allowToFetchNextPage = pageResult.loadMore
         _currentPage.tryEmit(pageResult)
-//        updateBeers(pageResult)
     }
 
-//    private fun updateBeers(pageResult: BeerPage) {
-//        val currentBeers = _beers.value.toMutableList()
-//        currentBeers.addAll(pageResult.beers)
-//        _beers.tryEmit(currentBeers)
-//    }
+    suspend fun getIfExist(id: Int): Beer? {
+        return beerRepository.returnIfExist(id)
+    }
+
+    fun addToLocalDb(beer: Beer) {
+        viewModelScope.launch {
+            beerRepository.addToFavorite(beer)
+            delay(1000)
+            val result = beerRepository.returnIfExist(beer.id)
+            Timber.d("Result: $result")
+        }
+    }
 
     override fun onClick(view: View) {
         when (view.id) {

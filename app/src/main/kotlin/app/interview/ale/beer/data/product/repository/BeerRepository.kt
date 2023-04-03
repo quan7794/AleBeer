@@ -9,5 +9,6 @@ interface BeerRepository {
     suspend fun fetchBeers(page: Int = 1, limit: Int = DEFAULT_BEER_PAGE_LIMIT): BeerPage
     suspend fun getAll(): Flow<List<Beer>>
     suspend fun addToFavorite(beer: Beer)
-    suspend fun isExist(id: String): Boolean
+    suspend fun isExist(id: Int): Boolean
+    suspend fun returnIfExist(id: Int): Beer?
 }

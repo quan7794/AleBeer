@@ -18,7 +18,11 @@ class BeerRepositoryImpl @Inject constructor(private val localDb: BeerDAO, priva
         localDb.add(beer)
     }
 
-    override suspend fun isExist(id: String): Boolean {
+    override suspend fun isExist(id: Int): Boolean {
         return localDb.isExist(id)
+    }
+
+    override suspend fun returnIfExist(id: Int): Beer? {
+        return localDb.returnIfExist(id)
     }
 }

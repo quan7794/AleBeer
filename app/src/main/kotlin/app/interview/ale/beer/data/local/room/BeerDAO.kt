@@ -17,5 +17,8 @@ interface BeerDAO {
     suspend fun add(beer: Beer)
 
     @Query("SELECT EXISTS(SELECT * FROM $BEER_TABLE WHERE id = :beerId)")
-    suspend fun isExist(beerId: String): Boolean
+    suspend fun isExist(beerId: Int): Boolean
+
+    @Query("SELECT * FROM $BEER_TABLE WHERE id = :beerId")
+    suspend fun returnIfExist(beerId: Int): Beer?
 }
