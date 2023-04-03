@@ -59,13 +59,15 @@
             app:layout_constraintBottom_toBottomOf="@+id/tvSaleOffTime"
             app:layout_constraintEnd_toEndOf="@id/btnSave"
             app:layout_constraintTop_toBottomOf="@+id/imageArea"
-            tools:text="Count down: 15:15:15" />
+            tools:text="15d &amp; 15h:15:15 to go." />
 
         <TextView
             style="@style/TEXT_STYLE_BODY3"
             android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:paddingHorizontal="@dimen/dimen_8dp_w"
             app:layout_constraintEnd_toStartOf="@+id/btnSave"
             app:layout_constraintStart_toEndOf="@+id/imageArea"

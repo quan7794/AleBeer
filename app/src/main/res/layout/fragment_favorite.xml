@@ -20,6 +20,8 @@
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:paddingBottom="?android:attr/actionBarSize"
+            android:clipToPadding="false"
             tools:itemCount="10"
             tools:listitem="@layout/beer_item" />
 

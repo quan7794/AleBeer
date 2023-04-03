@@ -41,9 +41,13 @@ class BeerFragmentViewModel @Inject constructor(private val beerRepository: Beer
         val fetchIndex = if (toNextPage) _pageIndex.value + 1 else 1
         Timber.d("$fetchIndex, to next page = $toNextPage")
         _pageIndex.tryEmit(fetchIndex)
-        val pageResult = beerRepository.fetchBeers(fetchIndex, limit)
-        allowToFetchNextPage = pageResult.loadMore
-        _currentPage.tryEmit(pageResult)
+        kotlin.runCatching {
+            val pageResult = beerRepository.fetchBeers(fetchIndex, limit)
+            allowToFetchNextPage = pageResult.loadMore
+            _currentPage.tryEmit(pageResult)
+        }.getOrElse {
+            uiSingleEvent.postValue(BeerUiState.FetchError(it.message.toString()))
+        }
     }
 
     suspend fun getIfExist(id: Int): Beer? {

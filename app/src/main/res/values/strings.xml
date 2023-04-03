@@ -14,4 +14,6 @@
     <string name="sale_off_in">"Sale Off In: %s"</string>
     <string name="count_down">Count down: %s</string>
     <string name="nothing_here">Nothing here</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
 </resources>

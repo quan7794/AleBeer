@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BeerDAO {
-    @Query("SELECT * FROM $BEER_TABLE ORDER BY id ASC")
+    @Query("SELECT * FROM $BEER_TABLE")
     fun getAll(): Flow<List<Beer>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

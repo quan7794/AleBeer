@@ -72,9 +72,9 @@ abstract class BaseVmFragment<VM : ViewModel> : Fragment() {
         }
     }
 
-    protected fun showToast(message: String?) {
+    protected fun showToast(message: String?, length: Int = Toast.LENGTH_SHORT) {
         if (message == null) return
-        context?.let { Toast.makeText(it, message, Toast.LENGTH_SHORT).show() }
+        context?.let { Toast.makeText(it, message, length).show() }
     }
 
     open fun configurationChanged() {

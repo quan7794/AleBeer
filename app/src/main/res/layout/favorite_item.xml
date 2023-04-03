@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_10dp_w"
     android:background="@color/md_theme_onPrimary"
+    app:cardCornerRadius="@dimen/dimen_8dp_w"
     app:cardElevation="@dimen/dimen_10dp_w"
     app:strokeColor="@color/md_theme_secondary"
-    app:strokeWidth="@dimen/dimen_2dp_w"
-    app:cardCornerRadius="@dimen/dimen_8dp_w"
-    android:layout_margin="@dimen/dimen_10dp_w">
+    app:strokeWidth="@dimen/dimen_2dp_w">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:padding="@dimen/dimen_2dp_w"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_2dp_w">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/imageArea"
@@ -31,50 +31,53 @@
                 android:layout_width="@dimen/dimen_70dp_w"
                 android:layout_height="@dimen/dimen_70dp_w"
                 android:adjustViewBounds="true"
-                android:scaleType="centerInside"
                 android:background="@color/md_theme_secondary"
                 android:contentDescription="@string/beer_image"
+                android:scaleType="centerInside"
                 tools:src="@drawable/image_place_holder" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.textview.MaterialTextView
-            style="@style/TEXT_STYLE_BODY8"
             android:id="@+id/tvSaleOffTime"
+            style="@style/TEXT_STYLE_BODY8"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_5dp_h"
+            android:layout_marginHorizontal="@dimen/dimen_5dp_h"
             android:lines="1"
             app:layout_constraintEnd_toStartOf="@+id/tvCountdown"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageArea"
+            app:layout_constraintTop_toBottomOf="@+id/btnDelete"
             tools:text="Sale Off in: 10:11:12 03-Dec" />
 
         <com.google.android.material.textview.MaterialTextView
-            style="@style/TEXT_STYLE_BODY8"
             android:id="@+id/tvCountdown"
+            style="@style/TEXT_STYLE_BODY8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_5dp_h"
             android:lines="1"
-            android:padding="@dimen/dimen_5dp_h"
             app:layout_constraintBottom_toBottomOf="@+id/tvSaleOffTime"
-            app:layout_constraintEnd_toEndOf="@id/btnSave"
-            app:layout_constraintTop_toBottomOf="@+id/imageArea"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnDelete"
             tools:text="Count down: 15:15:15" />
 
         <TextView
-            style="@style/TEXT_STYLE_BODY3"
             android:id="@+id/tvName"
+            style="@style/TEXT_STYLE_BODY3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:paddingHorizontal="@dimen/dimen_8dp_w"
-            app:layout_constraintEnd_toStartOf="@+id/btnSave"
+            app:layout_constraintEnd_toStartOf="@+id/btnUpdate"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageArea"
             app:layout_constraintTop_toTopOf="@+id/imageArea"
             tools:text="Beer name" />
 
         <TextView
-            style="@style/TEXT_STYLE_BODY7"
             android:id="@+id/tvPrice"
+            style="@style/TEXT_STYLE_BODY7"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:paddingHorizontal="@dimen/dimen_8dp_w"
@@ -85,16 +88,27 @@
             tools:text="Beer Price" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSave"
+            android:id="@+id/btnUpdate"
             android:layout_width="wrap_content"
-            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_5dp_w"
             android:backgroundTint="@color/md_theme_secondary"
-            android:text="@string/save"
-            android:layout_margin="@dimen/dimen_5dp_w"
-            app:layout_constraintBottom_toBottomOf="@+id/imageArea"
+            android:text="@string/update"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageArea" />
+            app:layout_constraintTop_toTopOf="@+id/tvName"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_5dp_w"
+            android:backgroundTint="@color/md_theme_error"
+            android:text="@string/delete"
+            app:layout_constraintBottom_toTopOf="@+id/tvCountdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnUpdate"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etNoteLayout"
@@ -107,8 +121,8 @@
                 android:id="@+id/etNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textAutoComplete"
                 android:background="@color/md_theme_outlineVariant"
+                android:inputType="textAutoComplete"
                 android:lines="1"
                 android:textColor="@color/md_theme_primary"
                 android:textColorHint="#757575"
