@@ -1,4 +1,4 @@
-package app.interview.ale.beer.ui.feature.beerScreen
+package app.interview.ale.beer.ui.adapter
 
 import mva3.adapter.ItemViewHolder
 import mva3.adapter.MultiViewAdapter

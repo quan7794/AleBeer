@@ -5,30 +5,37 @@
 
     <data>
 
-        <import type="android.view.View" />
-
         <variable
             name="vm"
-            type="app.interview.ale.beer.ui.feature.favoriteScreen.SettingFragmentViewModel" />
+            type="app.interview.ale.beer.ui.feature.favoriteScreen.FavoriteFragmentViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="@dimen/dimen_20dp_w"
-        app:strokeColor="@color/md_theme_primary">
+        android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/beerList"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="10"
+            tools:listitem="@layout/beer_item" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/favorite"/>
-        </androidx.core.widget.NestedScrollView>
+        <TextView
+            android:id="@+id/tvNoBeer"
+            style="@style/TEXT_STYLE_BODY1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            android:text="@string/nothing_here"
+            android:visibility="@{vm.emptyFavoriteVisibility}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </FrameLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

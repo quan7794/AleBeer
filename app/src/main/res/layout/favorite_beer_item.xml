@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/md_theme_onPrimary"
+    app:cardElevation="@dimen/dimen_10dp_w"
+    app:strokeColor="@color/md_theme_secondary"
+    app:strokeWidth="@dimen/dimen_2dp_w"
+    app:cardCornerRadius="@dimen/dimen_8dp_w"
+    android:layout_margin="@dimen/dimen_10dp_w">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/dimen_2dp_w"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/imageArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/dimen_5dp_w"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/md_theme_secondary"
+            app:strokeWidth="@dimen/dimen_1dp_w">
+
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="@dimen/dimen_70dp_w"
+                android:layout_height="@dimen/dimen_70dp_w"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:background="@color/md_theme_secondary"
+                android:contentDescription="@string/beer_image"
+                tools:src="@drawable/image_place_holder" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TEXT_STYLE_BODY8"
+            android:id="@+id/tvSaleOffTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_5dp_h"
+            android:lines="1"
+            app:layout_constraintEnd_toStartOf="@+id/tvCountdown"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageArea"
+            tools:text="Sale Off in: 10:11:12 03-Dec" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TEXT_STYLE_BODY8"
+            android:id="@+id/tvCountdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:padding="@dimen/dimen_5dp_h"
+            app:layout_constraintBottom_toBottomOf="@+id/tvSaleOffTime"
+            app:layout_constraintEnd_toEndOf="@id/btnSave"
+            app:layout_constraintTop_toBottomOf="@+id/imageArea"
+            tools:text="Count down: 15:15:15" />
+
+        <TextView
+            style="@style/TEXT_STYLE_BODY3"
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/dimen_8dp_w"
+            app:layout_constraintEnd_toStartOf="@+id/btnSave"
+            app:layout_constraintStart_toEndOf="@+id/imageArea"
+            app:layout_constraintTop_toTopOf="@+id/imageArea"
+            tools:text="Beer name" />
+
+        <TextView
+            style="@style/TEXT_STYLE_BODY7"
+            android:id="@+id/tvPrice"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingHorizontal="@dimen/dimen_8dp_w"
+            app:layout_constraintBottom_toBottomOf="@+id/imageArea"
+            app:layout_constraintEnd_toEndOf="@+id/tvName"
+            app:layout_constraintStart_toEndOf="@+id/imageArea"
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            tools:text="Beer Price" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/md_theme_secondary"
+            android:text="@string/save"
+            android:layout_margin="@dimen/dimen_5dp_w"
+            app:layout_constraintBottom_toBottomOf="@+id/imageArea"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageArea" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etNoteLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvSaleOffTime"
+            tools:layout_editor_absoluteX="3dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textAutoComplete"
+                android:background="@color/md_theme_outlineVariant"
+                android:lines="1"
+                android:textColor="@color/md_theme_primary"
+                android:textColorHint="#757575"
+                tools:hint="@string/note_hint" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

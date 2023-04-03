@@ -13,9 +13,21 @@ class BeerRepositoryImpl @Inject constructor(private val localDb: BeerDAO, priva
 
     override suspend fun getAll(): Flow<List<Beer>> = localDb.getAll()
 
+    override val favoriteBeers: Flow<List<Beer>> = localDb.getAll()
+
     override suspend fun addToFavorite(beer: Beer) {
         Timber.d("add: $beer")
         localDb.add(beer)
+    }
+
+    override suspend fun updateFavorite(beer: Beer): Int {
+        Timber.d("update: $beer")
+        return localDb.update(beer)
+    }
+
+    override suspend fun deleteFavorite(beer: Beer): Int {
+        Timber.d("remove favorite item: $beer")
+        return localDb.delete(beer)
     }
 
     override suspend fun isExist(id: Int): Boolean {

@@ -11,9 +11,10 @@ import app.interview.ale.base.ext.observe
 import app.interview.ale.beer.R
 import app.interview.ale.beer.databinding.FragmentBeerBinding
 import app.interview.ale.beer.domain.entities.Beer
+import app.interview.ale.beer.ui.adapter.AleBeerAdapter
+import app.interview.ale.beer.ui.adapter.BeerItemBinder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -52,19 +53,17 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
     }
 
     private fun addToFavorite(position: Int, note: String) {
-        showToast("Saving to Room")
+        Timber.d("Saving to Room")
         val favoriteBeer = beerSection.get(position).copy(note = note)
         viewModel.addToLocalDb(favoriteBeer)
+        showToast("Added to position $position, with note: $note")
         beerSection.set(position, favoriteBeer)
     }
 
     private fun initBeerList() {
         if (beerAdapter == null) beerAdapter = AleBeerAdapter()
         beerAdapter?.apply {
-            registerItemBinders(BeerItemBinder { position, note ->
-                showToast("Add to position $position, with note: $note")
-                addToFavorite(position, note)
-            })
+            registerItemBinders(BeerItemBinder { position, note -> addToFavorite(position, note) })
             addSection(beerSection)
             setInfiniteLoadingHelper(infiniteLoadingHelper)
         }
