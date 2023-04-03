@@ -14,7 +14,6 @@ import app.interview.ale.beer.domain.entities.Beer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import mva3.adapter.ListSection
@@ -33,7 +32,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
 
     override val viewModel: BeerFragmentViewModel by viewModels()
 
-    private var beerAdapter: MultiViewAdapter? = null
+    private var beerAdapter: AleBeerAdapter? = null
     private val beerSection = ListSection<Beer>()
     private val infiniteLoadingHelper: InfiniteLoadingHelper by lazy {
         object : InfiniteLoadingHelper(binding.beerList, R.layout.item_loading_footer, Int.MAX_VALUE) {
@@ -61,7 +60,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
     }
 
     private fun initBeerList() {
-        if (beerAdapter == null) beerAdapter = MultiViewAdapter()
+        if (beerAdapter == null) beerAdapter = AleBeerAdapter()
         beerAdapter?.apply {
             registerItemBinders(BeerItemBinder { position, note ->
                 showToast("Add to position $position, with note: $note")
