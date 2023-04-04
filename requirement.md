@@ -54,7 +54,8 @@ subtitle: AleBeer requirement
 - Public source code lên github, dẫn link vào group telegram.
 - Đính kèm file APK lên group telegram.
 - Tổng thời gian đã spend cho project.
-  Ví dụ:
-- https://github.com/my-name/uthus-interview.
-- File release apk.
-- Time spend: 20h.
+
+- Ví dụ:
+  - https://github.com/my-name/uthus-interview.
+  - File release apk.
+  - Time spend: 20h.
