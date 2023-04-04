@@ -1,4 +1,13 @@
+---
+layout: page
+title: Kết quả & Tính năng
+subtitle: AleBeer app.
+---
+
+#### Tổng thời gian: 23 giờ
+
 #### Tính năng
+
 
 1. Xây dựng base project (1 giờ):
 
