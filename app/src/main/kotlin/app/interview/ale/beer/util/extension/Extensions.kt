@@ -90,8 +90,9 @@ fun ImageView.loadImage(imageUrl: String) {
 }
 
 fun TextInputEditText.refreshBeerNote(note: String, textWatcherData: String? = null) {
-    val isNoted = note.isNotEmpty()
-    if (textWatcherData == null) setText(note.ifEmpty { "" })
+    val text = textWatcherData ?: note
+    setText(text)
+    val isNoted = text.isNotEmpty()
     hint = if (isNoted) "" else resources.getText(R.string.note_hint)
     enableEdit(isNoted.not())
 }

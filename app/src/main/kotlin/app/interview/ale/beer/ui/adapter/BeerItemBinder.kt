@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import app.interview.ale.base.ext.enableEdit
 import app.interview.ale.base.ext.showToast
 import app.interview.ale.base.ext.toDateTimeLeftFormat
@@ -25,21 +24,24 @@ import timber.log.Timber
 
 
 class BeerItemBinder(val onSaveClick: (position: Int, note: String) -> Unit) : ItemBinder<Beer, BeerItemBinder.BeerViewHolder>() {
-    private val textHolder: MutableMap<Int, String> = mutableMapOf()
+    val textHolder: MutableMap<Int, String> = mutableMapOf()
+
+    fun refreshItem() {
+
+    }
 
     override fun createViewHolder(parent: ViewGroup) = BeerViewHolder(inflate(parent, R.layout.beer_item), NoteTextWatcher(), BeerCountDownTimer())
     override fun canBindData(item: Any) = item is Beer
     override fun bindViewHolder(holder: BeerViewHolder, item: Beer) {
         Timber.d("textHolderData: ${textHolder.entries}")
-        holder.noteTextWatcher.updatePosition(holder.bindingAdapterPosition)
+        holder.noteTextWatcher.updateBeerId(item.id)
         holder.beerCountDownTimer.updateCountDownData(item.saleOffTime) { timeLeft -> holder.tvCountDown.text = timeLeft }
-        textHolder[holder.bindingAdapterPosition]?.let { holder.etNote.setText(it) }
         with(item) {
             holder.apply {
                 tvName.text = name
                 tvPrice.text = price
                 imImage.loadImage(imageUrl)
-                etNote.refreshBeerNote(note, textHolder[holder.bindingAdapterPosition])
+                etNote.refreshBeerNote(note, textHolder[item.id])
                 btnSave.refreshBeerNote(note)
                 tvSaleOffTime.setFormattedDate(saleOffTime)
             }
@@ -104,9 +106,9 @@ class BeerItemBinder(val onSaveClick: (position: Int, note: String) -> Unit) : I
 
     inner class NoteTextWatcher : TextWatcher {
         private var beforeText: String = ""
-        private var position = 0
-        fun updatePosition(position: Int) {
-            this.position = position
+        private var id = 0
+        fun updateBeerId(id: Int) {
+            this.id = id
         }
 
         override fun beforeTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
@@ -117,8 +119,8 @@ class BeerItemBinder(val onSaveClick: (position: Int, note: String) -> Unit) : I
 
         override fun onTextChanged(charSequence: CharSequence, i: Int, i2: Int, i3: Int) {
             if (charSequence.toString() == beforeText) return
-            Timber.d("Update '$charSequence' for position: $position")
-            textHolder[position] = charSequence.toString()
+            Timber.d("Update '$charSequence' for position: $id")
+            textHolder[id] = charSequence.toString()
         }
     }
 }

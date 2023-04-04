@@ -1,5 +1,6 @@
 package app.interview.ale.beer.ui.feature.favoriteScreen
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Parcelable
 import android.widget.Toast
@@ -61,14 +62,11 @@ class FavoriteFragment : BaseVmDbFragment<FavoriteFragmentViewModel, FragmentFav
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun setUpObservers() {
         super.setUpObservers()
         lifecycleScope.launch {
-            viewModel.favoriteList.collect { beers ->
-                beerSection.clear()
-                beerSection.addAll(beers).also { Timber.d("Added to screen: $beers") }
-                beerAdapter?.notifyDataSetChanged()
-            }
+            viewModel.favoriteList.collect { beers -> beerSection.set(beers) }
         }
     }
 

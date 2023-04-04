@@ -15,6 +15,7 @@ import app.interview.ale.beer.ui.adapter.AleBeerAdapter
 import app.interview.ale.beer.ui.adapter.BeerItemBinder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -35,6 +36,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
 
     private var beerAdapter: AleBeerAdapter? = null
     private val beerSection = ListSection<Beer>()
+    private val beerItemBinder = BeerItemBinder { position, note -> addToFavorite(position, note) }
     private val infiniteLoadingHelper: InfiniteLoadingHelper by lazy {
         object : InfiniteLoadingHelper(binding.beerList, R.layout.item_loading_footer, Int.MAX_VALUE) {
             override fun onLoadNextPage(page: Int) {
@@ -56,14 +58,14 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
         Timber.d("Saving to Room")
         val favoriteBeer = beerSection.get(position).copy(note = note)
         viewModel.addToLocalDb(favoriteBeer)
-        showToast("Added to position $position, with note: $note")
+        showToast("Added to favorite: ${favoriteBeer.name}, $note")
         beerSection.set(position, favoriteBeer)
     }
 
     private fun initBeerList() {
         if (beerAdapter == null) beerAdapter = AleBeerAdapter()
         beerAdapter?.apply {
-            registerItemBinders(BeerItemBinder { position, note -> addToFavorite(position, note) })
+            registerItemBinders(beerItemBinder)
             addSection(beerSection)
             setInfiniteLoadingHelper(infiniteLoadingHelper)
         }
@@ -98,6 +100,15 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
                 }
             }
         }
+        lifecycleScope.launch {
+            viewModel.favoriteList.collect { favoriteBeers ->
+                beerSection.data.forEachIndexed { index, beerListItem ->
+                    val dataOnFavorite = favoriteBeers.firstOrNull { beerListItem.id == it.id }
+                    beerItemBinder.textHolder[beerListItem.id] = dataOnFavorite?.note ?: ""
+                    beerSection.set(index, dataOnFavorite ?: beerListItem.copy(note = ""))
+                }
+            }
+        }
         observe(viewModel.uiSingleEvent) { event ->
             when (event) {
                 is BeerUiState.FetchError -> infiniteLoadingHelper.markCurrentPageLoaded().also { showToast(event.message) }
@@ -113,6 +124,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
                 if (cache != null) it.copy(note = cache.note) else it
             }.collect { beer ->
                 beerSection.add(beer).also { Timber.d("Add to screen: $beer") }
+                delay(100)
             }
         }
     }

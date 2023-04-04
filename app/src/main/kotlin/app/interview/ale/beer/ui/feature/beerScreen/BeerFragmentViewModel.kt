@@ -9,10 +9,7 @@ import app.interview.ale.beer.domain.entities.Beer
 import app.interview.ale.beer.domain.entities.BeerPage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -25,8 +22,7 @@ class BeerFragmentViewModel @Inject constructor(private val beerRepository: Beer
     private val _currentPage = MutableSharedFlow<BeerPage?>(0, 1)
     val currentPage = _currentPage.asSharedFlow()
 
-//    private val _beers = MutableStateFlow<MutableList<Beer>>(mutableListOf())
-//    val beers = _beers.asStateFlow()
+    val favoriteList = beerRepository.favoriteBeers.stateIn(viewModelScope, SharingStarted.Lazily, listOf())
 
     private var allowToFetchNextPage = true
 
