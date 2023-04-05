@@ -20,7 +20,7 @@ subtitle: AleBeer app.
     + Retrofit
     + Repository
     + ViewModel
-- Giao diện:Sử dụng material design 3
+- Giao diện: Sử dụng material design 3
 - Hỗ trợ dark và light mode (tự động thay đổi theo cài đặt hệ thống android).
 ```
 
