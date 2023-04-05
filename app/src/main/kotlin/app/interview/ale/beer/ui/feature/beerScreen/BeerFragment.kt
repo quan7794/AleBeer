@@ -15,7 +15,6 @@ import app.interview.ale.beer.ui.adapter.AleBeerAdapter
 import app.interview.ale.beer.ui.adapter.BeerItemBinder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -28,7 +27,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding>() {
     override fun getLayoutId() = R.layout.fragment_beer
-
+    private var needToSyncFavorite = false
 //    @Inject
 //    lateinit var navigator: AppNavigator
 
@@ -54,12 +53,17 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
         initSwipeAction()
     }
 
+    override fun onResume() {
+        super.onResume()
+        needToSyncFavorite = true
+    }
+
     private fun addToFavorite(position: Int, note: String) {
         Timber.d("Saving to Room")
-        val favoriteBeer = beerSection.get(position).copy(note = note)
+        val favoriteBeer = beerSection.get(position).copy(note = note, lastSaved = System.currentTimeMillis())
         viewModel.addToLocalDb(favoriteBeer)
         showToast("Added to favorite: ${favoriteBeer.name}, $note")
-        beerSection.set(position, favoriteBeer)
+//        beerSection.set(position, favoriteBeer)
     }
 
     private fun initBeerList() {
@@ -81,7 +85,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
                 beerSection.clear()
                 viewModel.fetchPage(toNextPage = false)
                 binding.refresher.isRefreshing = false
-                infiniteLoadingHelper.markCurrentPageLoaded()
+//                infiniteLoadingHelper.markCurrentPageLoaded()
             }
         }
     }
@@ -92,7 +96,7 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
             viewModel.currentPage.collect { page ->
                 Timber.d("Got beer: ${page?.beers}")
                 page?.beers?.let { beers ->
-                    addBeersAsync(beers).invokeOnCompletion {
+                    setBeersToScreen(beers).invokeOnCompletion {
                         Timber.d("Add beers completed")
                         if (viewModel.pageIndex.value == 1) binding.beerList.scrollToPosition(0)
                         infiniteLoadingHelper.markCurrentPageLoaded()
@@ -100,7 +104,8 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
                 }
             }
         }
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenResumed {
+            needToSyncFavorite = false
             viewModel.favoriteList.collect { favoriteBeers ->
                 beerSection.data.forEachIndexed { index, beerListItem ->
                     val dataOnFavorite = favoriteBeers.firstOrNull { beerListItem.id == it.id }
@@ -117,15 +122,19 @@ class BeerFragment : BaseVmDbFragment<BeerFragmentViewModel, FragmentBeerBinding
         }
     }
 
-    private suspend fun addBeersAsync(beers: List<Beer>): Job {
+    private suspend fun setBeersToScreen(beers: List<Beer>): Job {
         return lifecycleScope.launch {
-            beers.asFlow().map {
+            val proceedBeers = beers.map {
                 val cache = viewModel.getIfExist(it.id)
                 if (cache != null) it.copy(note = cache.note) else it
-            }.collect { beer ->
-                beerSection.add(beer).also { Timber.d("Add to screen: $beer") }
-                delay(100)
-            }
+            }.also { Timber.d("Add to screen: $it") }
+            beerSection.addAll(proceedBeers)
+//            beers.asFlow().map {
+//                val cache = viewModel.getIfExist(it.id)
+//                if (cache != null) it.copy(note = cache.note) else it
+//            }.collect { beer ->
+//                beerSection.add(beer).also { Timber.d("Add to screen: $beer") }
+//            }
         }
     }
 

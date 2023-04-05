@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import app.interview.ale.beer.domain.entities.Beer
 import app.interview.ale.beer.domain.entities.RatingConverter
 
-@Database(entities = [Beer::class], version = 1, exportSchema = false)
+@Database(entities = [Beer::class], version = 2, exportSchema = false)
 @TypeConverters(RatingConverter::class)
 abstract class BeerDataBase : RoomDatabase() {
     abstract fun bearDAO(): BeerDAO

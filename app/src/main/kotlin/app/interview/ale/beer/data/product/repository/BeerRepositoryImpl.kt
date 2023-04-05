@@ -11,9 +11,9 @@ import javax.inject.Inject
 class BeerRepositoryImpl @Inject constructor(private val localDb: BeerDAO, private val beerService: BeerApiService) : BeerRepository {
     override suspend fun fetchBeers(page: Int, limit: Int): BeerPage = beerService.getBeers(page, limit)
 
-    override suspend fun getAll(): Flow<List<Beer>> = localDb.getAll()
+    override suspend fun getAll(): Flow<List<Beer>> = localDb.getFavoriteBeers()
 
-    override val favoriteBeers: Flow<List<Beer>> = localDb.getAll()
+    override val favoriteBeers: Flow<List<Beer>> = localDb.getFavoriteBeers()
 
     override suspend fun addToFavorite(beer: Beer) {
         Timber.d("add: $beer")

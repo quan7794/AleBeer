@@ -41,6 +41,8 @@ data class Beer(
     val saleOffTime: Long = -1,
     @SerializedName("note")
     val note: String = "",
+    @SerializedName("lastSaved")
+    val lastSaved: Long = 0,
 ) : Parcelable
 
 @Parcelize

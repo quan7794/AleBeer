@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BeerDAO {
-    @Query("SELECT * FROM $BEER_TABLE")
-    fun getAll(): Flow<List<Beer>>
+    @Query("SELECT * FROM $BEER_TABLE ORDER BY lastSaved DESC")
+    fun getFavoriteBeers(): Flow<List<Beer>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun add(beer: Beer)
